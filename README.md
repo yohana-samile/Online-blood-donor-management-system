@@ -52,8 +52,7 @@ be delayed then the manager must be able to call the delivery person to get the 
 
 
 built using     
-Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-
+Laravel v10.42.0 (PHP v8.1.2-1ubuntu2.14)
 
 by 
 Developer Samile
