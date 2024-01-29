@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ 'Online Blood Donation Management System' }}</title>
-
+    <link rel="stylesheet" href="{{ url('css/obdms.css') }}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -16,6 +16,9 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Scripts -->
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
@@ -83,6 +86,12 @@
         <hr>
     </div>
     <!-- end img sld -->
+
+
+    {{-- loader --}}
+    {{-- <div style="width:100%;text-align:center;vertical-align:bottom">
+		<div class="loader"></div>
+    </div> --}}
 
     <!-- why_donation -->
     <div class="container bg-light" id="why_donation">
@@ -229,7 +238,9 @@
                     <h5 class="modal-title" id="login_modal">{{('User Login Form')}}</h5>
                     <button type="button" class="btn-danger text-white btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
                 </div>
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="" id="log_me_in">
+                    @csrf
+            		<div class="loader" hidden></div>
                     <div class="modal-body">
                         <p><small>{{('Sorry Only Hospitals Can Request For Blood')}}</small></p>
                         <div class="mb-3">
@@ -269,7 +280,7 @@
                             </a>
                         @endif
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{('Close')}}</button>
-                        <button type="submit" class="btn btn-danger">{{('Login')}}</button>
+                        <button type="submit" class="log_me_in btn btn-danger">{{('Login')}}</button>
                     </div>
                 </form>
             </div>
@@ -302,27 +313,7 @@
     </footer>
     <!-- Footer -->
 
-    <script>
-        $(document).ready(function () {
-         // Show/hide the scroll-to-top button based on scroll position
-         $(window).scroll(function () {
-           if ($(this).scrollTop() > 100) {
-             $('.scroll-to-top').fadeIn();
-           } else {
-             $('.scroll-to-top').fadeOut();
-           }
-         });
-
-         // Scroll to the top when the arrow is clicked
-         $('.scroll-to-top').click(function () {
-           $('html, body').animate({ scrollTop: 0 }, 800);
-           return false;
-         });
-       });
-   </script>
-   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-   <script src="js/bootstrap.min.js"></script>
-   <script src="js/bootstrap.bundle.js"></script>
-   <script src="js/main.js"></script>
+   {{-- <script src="{{ url('resources/js/custom.js') }}"></script> --}}
+   <script src="{{ url('js/custom.js') }}"></script>
 </body>
 </html>

@@ -19,8 +19,11 @@
     Route::get('/', function () {
         return view('index');
     });
-    Route::get('/auth/login', [LoginController::class, 'login'])->name('login');
-    // Route::post('login', [LoginController::class, 'login'])->name('login');
+
+    Route::controller(LoginController::class)->group(function(){
+        Route::get('/auth/login', 'login');
+        Route::post('Auth/login', [LoginController::class, 'login'])->name('Auth/login');
+    });
 
     // authenticated routes
     Auth::routes();
