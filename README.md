@@ -51,8 +51,30 @@ be delayed then the manager must be able to call the delivery person to get the 
     screenshot showing the system                 
 
 
+landing page
+
+![Screenshot from 2024-01-28 23-44-35](https://github.com/yohana-samile/Online-blood-donor-management-system/assets/99715781/49d157e4-c0af-43df-9b44-47b73218f79b)
+
+![Screenshot from 2024-01-28 23-44-56](https://github.com/yohana-samile/Online-blood-donor-management-system/assets/99715781/88f89ff6-b09a-4335-9b84-324fd93defb7)
+
+![Screenshot from 2024-01-28 23-46-06](https://github.com/yohana-samile/Online-blood-donor-management-system/assets/99715781/2f74fcca-0742-4075-b128-9835f634dd4c)
+
+![Screenshot from 2024-01-28 23-46-32](https://github.com/yohana-samile/Online-blood-donor-management-system/assets/99715781/5d051521-2ed4-447a-83e6-b179c71d18fb)
+
+
+login page
+
+![login](https://github.com/yohana-samile/Online-blood-donor-management-system/assets/99715781/c3a17818-dec2-4ecb-b14b-f10602efc06d)
+
+
+forget password
+
+![reset](https://github.com/yohana-samile/Online-blood-donor-management-system/assets/99715781/0f842543-baa9-4e9b-b9d0-48ccd30e86f7)
+
+
 built using     
 Laravel v10.42.0 (PHP v8.1.2-1ubuntu2.14)
+
 
 by 
 Developer Samile
