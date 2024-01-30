@@ -37,4 +37,4 @@ $(document).ready(function () {
         });
     });
 });
-// Emotional Dua Qunut by Sheikh Jebril
+
