@@ -1,7 +1,6 @@
 <?php
 
     namespace App\Models;
-
     // use Illuminate\Contracts\Auth\MustVerifyEmail;
     use Illuminate\Database\Eloquent\Factories\HasFactory;
     use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -41,12 +40,21 @@
         ];
 
         public function Role(){
-            $this->belongTo(Role::class);
+            $this->belongsTo(Role::class);
         }
+        
         public function New_and_update(){
             $this->hasMany(New_and_update::class);
         }
+
         public function Request(){
             $this->hasMany(Request::class);
+        }
+
+        public function Donar (){
+            return $this->hasOne(Donar::class);
+        }
+        public function Hospital (){
+            return $this->hasOne(Hospital::class);
         }
     }

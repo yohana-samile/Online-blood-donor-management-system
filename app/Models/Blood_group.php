@@ -4,7 +4,7 @@
     use Illuminate\Database\Eloquent\Factories\HasFactory;
     use Illuminate\Database\Eloquent\Model;
 
-    class BloodGroup extends Model {
+    class Blood_group extends Model {
         use HasFactory;
-        protected $fillable = ['blood_group'];
+        protected $fillable = ['bloodGroup'];
     }

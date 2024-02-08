@@ -13,6 +13,7 @@
                 $table->id();
                 $table->text('new_title');
                 $table->text('new_postacl_card');
+                $table->text('publish_status')->default(FALSE);
                 $table->unsignedBigInteger('user_id'); //published by
                 $table->timestamps();
                 $table->foreign('user_id')->references('id')->on('users');

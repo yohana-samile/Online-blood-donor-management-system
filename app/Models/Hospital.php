@@ -4,13 +4,13 @@
     use Illuminate\Database\Eloquent\Factories\HasFactory;
     use Illuminate\Database\Eloquent\Model;
 
-    class New_and_update extends Model {
+    class Hospital extends Model {
         use HasFactory;
         protected $fillable = [
-            'new_title', 'new_postacl_card', 'user_id'
+            'user_id', 'place_located', 'phone_number'
         ];
 
         public function User (){
-            $this->belongsTo(User::class);
+            return $this->belongsTo(User::class);
         }
     }

@@ -5,6 +5,11 @@
     use App\Http\Controllers\Auth\ConfirmPasswordController;
     use App\Http\Controllers\Auth\RegisterController;
     use App\Http\Controllers\Auth\VerificationController;
+    use App\Http\Controllers\Admin\RegisterUserController;
+    use App\Http\Controllers\Admin\BloodGroupController;
+    use App\Http\Controllers\Admin\RoleController;
+    use App\Http\Controllers\Admin\NewAndUpdateController;
+
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -28,3 +33,32 @@
     // authenticated routes
     Auth::routes();
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    // registration
+    Route::controller(RegisterUserController::class)->group(function(){
+        Route::get('/donar/index', 'index');
+    })->middleware('auth');
+
+
+    // blood
+    Route::controller(BloodGroupController::class)->group(function(){
+        Route::get('blood/', 'index');
+        Route::post('/blood/register_blood_group', 'register_blood_group')->name('blood/register_blood_group');
+        Route::post('/blood/editBloodGroup', 'editBloodGroup')->name('/blood/editBloodGroup');
+        Route::post('/blood/delete_blood_group', 'delete_blood_group')->name('/blood/delete_blood_group');
+    })->middleware('auth');
+
+    // Role
+    Route::controller(RoleController::class)->group(function(){
+        Route::get('roles/', 'index');
+        Route::post('/roles/register_role', 'register_role')->name('roles/register_role');
+        Route::post('roles/edit_role', 'edit_role')->name('roles/edit_role');
+        Route::post('/roles/delete_role', 'delete_role')->name('/roles/delete_role');
+    })->middleware('auth');
+
+
+    // news and update
+    Route::controller(NewAndUpdateController::class)->group(function () {
+        Route::get('news/', 'index');
+        Route::post('/news/add_news_and_update', 'add_news_and_update')->name('/news/add_news_and_update');
+    });

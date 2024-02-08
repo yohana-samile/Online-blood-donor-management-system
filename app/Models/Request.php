@@ -10,6 +10,9 @@
         protected $fillable = ['blood_group_id', 'user_id'];
 
         public function User(){
-            $this->belongTo(User::class);
+            $this->belongsTo(User::class);
+        }
+        public function Blood_group(){
+            $this->belongsTo(Blood_group::class);
         }
     }

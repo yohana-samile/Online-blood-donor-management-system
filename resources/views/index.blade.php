@@ -9,6 +9,8 @@
 
     <title>{{ 'Online Blood Donation Management System' }}</title>
     <link rel="stylesheet" href="{{ url('css/obdms.css') }}">
+    <link rel="stylesheet" href="{{ url('css/bootstrap.css')}}">
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -18,6 +20,7 @@
     <!-- Scripts -->
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -25,8 +28,8 @@
     <nav class="navbar navbar-expand-lg text-white bg-danger">
         <div class="container-fluid">
             <a class="navbar-brand text-white" href="{{ url('/') }}">{{('Obline Blood Donor Management System')}}</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon text-white"></span>
+            <button class="navbar-toggler text-light btn btn-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars text-light"></i>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarColor02">
                 <ul class="navbar-nav ml-auto justify-content-end">
@@ -41,6 +44,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="javascript:void()" data-bs-toggle="modal" data-bs-target="#login_modal">{{('Need Blood')}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">{{('News')}}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#contact_us">{{('Contact')}}</a>
@@ -136,20 +142,20 @@
                 <h4 class="text-center">Free Regratation For Donors</h4>
                 <form>
                     <div class="mb-3">
-                        <label for="full_name" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="full_name" name="full_name">
+                        <label for="regstrationFull_name" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="regstrationFull_name" name="full_name">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="Phone_number" class="form-label">Phone Number</label>
-                                <input type="tell" name="Phone_number" id="Phone_number" class="form-control" id="Phone_number">
+                                <label for="phoneNumber" class="form-label">Phone Number</label>
+                                <input type="tell" name="phoneNumber" id="phoneNumber" class="form-control" id="phoneNumber">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email address</label>
-                                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+                                <label for="registrationEmail" class="form-label">Email address</label>
+                                <input type="email" class="form-control" name="email" id="registrationEmail" aria-describedby="emailHelp">
                                 <div id="emailHelp" class="form-text"><small>We'll never share your email with anyone</small></div>
                             </div>
                         </div>
@@ -197,9 +203,12 @@
         <hr>
     </div>
 
-
+    {{-- news and update --}}
+    <div class="container bg-light" id="new_and_update">
+        <h4 class="text-center">news and update</h4>
+    </div>
     <!-- contact_us -->
-    <div class="container my-4 bg-light" id="contact_us"><br>
+    <div class="container my-4 bg-white" id="contact_us"><br>
         <div class="row my-3">
             <div class="col-md-6">
                 <h4>Contact Details </h4>
@@ -312,8 +321,16 @@
       <!-- Copyright -->
     </footer>
     <!-- Footer -->
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-   {{-- <script src="{{ url('resources/js/custom.js') }}"></script> --}}
+    <script src="{{ url("js/bootstrap.bundle.js")}}"></script>
+    <script src="{{ url("js/bootstrap.min.js")}}"></script>
    <script src="{{ url('js/custom.js') }}"></script>
+    <script src="{{ url("js/jquery.min.js")}}"></script>
+    <script src="{{ url("js/bootstrap.min.js")}}"></script>
+    <script src="{{ url("js/bootstrap.js")}}"></script>
+    <script src="{{ url("js/main.js")}}"></script>
+    <script src="{{ url("js/compressedJQuery.js")}}"></script>
 </body>
 </html>
