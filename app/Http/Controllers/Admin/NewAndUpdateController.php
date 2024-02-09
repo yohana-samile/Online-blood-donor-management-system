@@ -34,4 +34,36 @@
             ]);
             return response()->json(['success' =>'/news/']);
         }
+
+        // edit_news_and_update
+        public function edit_news_and_update(Request $request){
+            $validate = $request->validate([
+                'new_title' => 'required',
+                'id' => 'required',
+            ]);
+            $new_title = $request->input('new_title');
+            $id = $request->input('id');
+            $update = DB::update("update new_and_updates set new_title = '$new_title' where id = '$id' ");
+            if ($update) {
+                return response()->json(['success' =>'/news/']);
+            }
+            else{
+                return response()->json(['error' =>'/news/']);
+            }
+        }
+
+        // // delete_news_and_update
+        public function delete_news_and_update(Request $request){
+            $validate = $request->validate([
+                'id' => 'required',
+            ]);
+            $id = $request->input('id');
+            $update = DB::update("DELETE from new_and_updates where id = '$id' ");
+            if ($update) {
+                return response()->json(['success' =>'/news/']);
+            }
+            else{
+                return response()->json(['error' =>'/news/']);
+            }
+        }
     }

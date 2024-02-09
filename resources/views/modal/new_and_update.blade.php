@@ -29,3 +29,43 @@
         </div>
     </div>
 </div>
+
+
+{{-- img preview --}}
+@if (!empty($get_new))
+    <div class="modal fade modal-xl" role="dialog" id="image_preview" tabindex="-1" aria-labelledby="image_preview" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="{{ asset('image/'.$get_new->new_postacl_card) }}" alt="post-card" width="100%" height="100%">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{-- editNewTitle --}}
+    <div class="modal fade" role="dialog" id="editNewTitle{{ $get_new->id }}" tabindex="-1" aria-labelledby="editNewTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="" id="edit_news_and_update">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="new_title">{{__('Enter news title')}}</label>
+                            <input type="text" name="id" value="{{ $get_new->id }}" id="id" class="form-control">
+                            <input type="text" name="new_title" value="{{ $get_new->new_title }}" id="new_title" class="form-control" placeholder="Enter new title">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{('Close')}}</button>
+                        <button type="submit" class="edit_news_and_update btn btn-danger">{{('Save')}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endif

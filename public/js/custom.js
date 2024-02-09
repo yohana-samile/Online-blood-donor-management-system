@@ -205,15 +205,61 @@ $(document).ready(function () {
             processData: false,
             success: function (response) {
                 if (response.success) {
-                    if (response.success) {
-                        swal.fire("success", "New And Update Are Uploaded Successfully", "success");
-                    }
-                    window.location.href = response.success;
-                    $('#add_news_and_update')[0].reset();
+                    swal.fire("success", "New And Update Are Uploaded Successfully", "success");
                 }
+                window.location.href = response.success;
+                $('#add_news_and_update')[0].reset();
             },
             error: function (error) {
                 swal.fire("Error", "Something went wrong, please try again", "error");
+            }
+        });
+    });
+
+    // edit_news_and_update
+    $('#edit_news_and_update').on('submit', function (e) {
+        e.preventDefault();
+        let url = "/news/edit_news_and_update";
+        let formData = new FormData(this);
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.success) {
+                    swal.fire("success", "news and update deleted Successully", "success");
+                    window.location.href = response.success;
+                    $('#edit_news_and_update')[0].reset();
+                }
+            },
+            error: function (error) {
+                swal.fire("error", "something went wrong, try again", "error");
+            }
+        });
+    });
+
+
+    $('#delete_new').on('submit', function (e) {
+        e.preventDefault();
+        let url = "/news/delete_news_and_update";
+        let formData = new FormData(this);
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.success) {
+                    swal.fire("success", "news and update deleted Successully", "success");
+                    window.location.href = response.success;
+                    $('#delete_new')[0].reset();
+                }
+            },
+            error: function (error) {
+                swal.fire("error", "something went wrong, try again", "error");
             }
         });
     });
