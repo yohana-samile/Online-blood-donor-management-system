@@ -263,5 +263,55 @@ $(document).ready(function () {
             }
         });
     });
+
+    // publish new
+    $('.publish_new').click(function (e) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        e.preventDefault();
+        swal.fire({
+            title: "confirmation",
+            text: "Are You Sure Want Publish This New? You Can't Revert This Action",
+            icon: "warning",
+            buttons: ["Cansel", "Okay, Proceed"],
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+        }).then((willDeny) => {
+            if (willDeny) {
+                form.submit();
+            }
+        });
+    });
+
+    $('#publish_new').on('submit', function (e) {
+        e.preventDefault();
+        var url = "/news/publish_new";
+        var formData = new FormData(this);
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.success) {
+                    swal.fire({
+                        title: "success!",
+                        text: "New Published Successfully",
+                        icon: "success"
+                    })
+                    .the(() =>{
+                        window.location.href = response.success;
+                    });
+                }
+                else{
+                    swal.fire("error", "Something Went Wrong, Please Try Again", "error");
+                }
+            },
+            error: function (error){
+                swal.fire("error", "Something Went Wrong, Please Try Again", "error");
+            }
+        });
+    });
 });
 

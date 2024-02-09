@@ -66,4 +66,19 @@
                 return response()->json(['error' =>'/news/']);
             }
         }
+
+        // publish_new
+        public function publish_new(Request $request){
+            $validate = $request->validate([
+                'id' => 'required'
+            ]);
+            $id = $request->input('id');
+            $update = DB::update("UPDATE new_and_updates SET publish_status = 1 where id = '$id' ");
+            if ($update) {
+                return response()->json(['success' =>'/news/']);
+            }
+            else{
+                return response()->json(['error' =>'/news/']);
+            }
+        }
     }

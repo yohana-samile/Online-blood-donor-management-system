@@ -224,11 +224,10 @@
                 @endforeach
             </div>
         @else
-            <br>
             <p class="alert alert-danger my-4">No Records</p>
         @endif
     </div>
-    
+
     <!-- contact_us -->
     <div class="container my-4 bg-white" id="contact_us"><br>
         <div class="row my-3">

@@ -56,7 +56,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="new_title">{{__('Enter news title')}}</label>
-                            <input type="text" name="id" value="{{ $get_new->id }}" id="id" class="form-control">
+                            <input type="hidden" name="id" value="{{ $get_new->id }}" id="id" class="form-control">
                             <input type="text" name="new_title" value="{{ $get_new->new_title }}" id="new_title" class="form-control" placeholder="Enter new title">
                         </div>
                     </div>

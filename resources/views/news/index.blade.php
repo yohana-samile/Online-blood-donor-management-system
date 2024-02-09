@@ -17,13 +17,21 @@
                             </div>
                             <div class="card-footer">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <a href="javascript:void()" class="text-decoration-none">publish</a>
+                                    <div class="col-md-6">
+                                        @if ($get_new->publish_status == 0)
+                                            <form action="" method="POST" id="publish_new">
+                                                @csrf
+                                                <input type="hidden" name="id" id="id" value="{{ $get_new->id }}" class="form-control" placeholder="">
+                                                <button type="submit" class="publish_new btn btn-white text-primary text-decoration-none">publish</button>
+                                            </form>
+                                        @else
+                                            <p class="badge badge-primary">Published</p>
+                                        @endif
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <a href="javascript:void()" data-target="#editNewTitle{{ $get_new->id }}" data-toggle="modal" class="text-decoration-none" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-edit text-primary"></i></a>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <form action="" method="POST" id="delete_new">
                                             @csrf
                                             <input type="hidden" name="id" id="id" value="{{ $get_new->id }}" class="form-control" placeholder="">

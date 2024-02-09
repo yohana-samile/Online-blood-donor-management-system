@@ -63,4 +63,5 @@
         Route::post('/news/add_news_and_update', 'add_news_and_update')->name('/news/add_news_and_update');
         Route::post('/news/edit_news_and_update', 'edit_news_and_update')->name('/news/edit_news_and_update');
         Route::post('/news/delete_news_and_update', 'delete_news_and_update')->name('/news/delete_news_and_update');
+        Route::post('/news/publish_new', 'publish_new')->name('/news/publish_new');
     });
