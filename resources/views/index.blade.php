@@ -46,7 +46,7 @@
                         <a class="nav-link text-white" href="javascript:void()" data-bs-toggle="modal" data-bs-target="#login_modal">{{('Need Blood')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">{{('News')}}</a>
+                        <a class="nav-link text-white" href="#new_and_update">{{('News')}}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#contact_us">{{('Contact')}}</a>
@@ -206,7 +206,29 @@
     {{-- news and update --}}
     <div class="container bg-light" id="new_and_update">
         <h4 class="text-center">news and update</h4>
+        @if (!empty($get_news))
+            <div class="row">
+                @foreach ($get_news as $get_new)
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <p>{{ $get_new->new_title }}</p>
+                            </div>
+                            <div class="card-body">
+                                <a href="javascript:void()" data-target="#image_preview" data-toggle="modal" aria-hidden="false">
+                                    <img src="{{ asset('image/'.$get_new->new_postacl_card) }}" alt="post-card" width="100%" height="100%">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <br>
+            <p class="alert alert-danger my-4">No Records</p>
+        @endif
     </div>
+    
     <!-- contact_us -->
     <div class="container my-4 bg-white" id="contact_us"><br>
         <div class="row my-3">
