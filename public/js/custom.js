@@ -81,7 +81,7 @@ $(document).ready(function () {
                     swal.fire("success", "Blood Group Updated Successfully", "success");
                 }
                 window.location.href = response.success;
-                $('#edit_blood_group')[0].reset();
+                // $('#edit_blood_group')[0].reset();
             },
             error: function (error) {
                 swal.fire("Error", "Something went wrong, please try again", "error");
@@ -91,17 +91,21 @@ $(document).ready(function () {
 
 
     // delete_blood_group
-    $('#delete_blood_group').on('submit', function (e) {
-        e.preventDefault();
-        let url = "/blood/delete_blood_group";
-        let formData = new FormData(this);
+    $(document).on('click', '#delete_blood_group', function () {
+        var id = $(this).data('id');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
         $.ajax({
-            url: url,
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
+            url: "/blood/delete_blood_group/" + id,
+            type: "DELETE",
+            dataType: 'json',
+            data: {
+                "id": id
+            },
             success: function (response) {
                 if (response.success) {
                     swal.fire("success", "Blood Group Deleted Successfully", "success");

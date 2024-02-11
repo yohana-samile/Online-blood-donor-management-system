@@ -12,6 +12,7 @@
             Schema::create('blood_groups', function (Blueprint $table) {
                 $table->id();
                 $table->string('bloodGroup');
+                $table->text('bloodGroupInfo');
                 $table->timestamps();
             });
         }

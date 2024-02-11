@@ -6,5 +6,5 @@
 
     class Blood_group extends Model {
         use HasFactory;
-        protected $fillable = ['bloodGroup'];
+        protected $fillable = ['bloodGroup', 'bloodGroupInfo'];
     }

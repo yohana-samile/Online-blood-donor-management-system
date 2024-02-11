@@ -20,6 +20,7 @@
                         <tr>
                             <th>#</th>
                             <th>Blood Group Name</th>
+                            <th>Group Info</th>
                             <th>Date Registered</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -28,6 +29,7 @@
                         <tr>
                             <th>#</th>
                             <th>Blood Group Name</th>
+                            <th>Group Info</th>
                             <th>Date Registered</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -37,6 +39,7 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $blood_group->bloodGroup }}</td>
+                                <td>{{ $blood_group->bloodGroupInfo }}</td>
                                 <td>{{ $blood_group->created_at }}</td>
                                 <td>
                                     <div class="row">
@@ -44,19 +47,15 @@
                                             <a href="javascript:void()" class="text-decoration-none"><i class="fa fa-eye text-primary"></i></a>
                                         </div>
                                         <div class="col-md-4">
-                                            <a href="javascript:void()" data-target="#editBloodGroup{{ $blood_group->id }}" data-toggle="modal" class="text-decoration-none" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-edit text-primary"></i></a>
+                                            <a href="javascript:void()" data-target="#editBloodGroup{{ $blood_group->id }}" data-id="{{ $blood_group->id }}" data-toggle="modal" class="text-decoration-none" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-edit text-primary"></i></a>
                                         </div>
                                         <div class="col-md-4">
-                                            <form action="" method="POST" id="delete_blood_group">
-                                                @csrf
-                                                <input type="hidden" name="id" id="id" value="{{ $blood_group->id }}" class="form-control" placeholder="">
-                                                <button type="submit" class="delete_blood_group btn btn-white text-decoration-none"><i class="fa fa-trash text-danger"></i></button>
-                                            </form>
+                                            <button id="delete_blood_group" data-id="{{ $blood_group->id }}" class="btn btn-white"><i class="fa fa-trash text-danger"></i></button>
                                         </div>
                                     </div>
                                 </td>
-                                @include('modal.editBloodGroup')
                             </tr>
+                            @include('modal.editBloodGroup')
                         @endforeach
                     </tbody>
                 </table>
@@ -64,6 +63,6 @@
         </div>
     </div>
 
-  <!-- Modal -->
+    <!-- Modal -->
     @include('modal.registerBloodGroup')
 @endsection

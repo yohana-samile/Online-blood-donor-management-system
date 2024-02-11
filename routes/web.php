@@ -45,8 +45,9 @@
         Route::get('blood/', 'index');
         Route::post('/blood/register_blood_group', 'register_blood_group')->name('blood/register_blood_group');
         Route::post('/blood/editBloodGroup', 'editBloodGroup')->name('/blood/editBloodGroup');
-        Route::post('/blood/delete_blood_group', 'delete_blood_group')->name('/blood/delete_blood_group');
+        Route::delete('/blood/delete_blood_group/{id}', 'delete_blood_group');
     })->middleware('auth');
+    // Route::delete('items/{id}', 'ItemController@destroy')->name('items.destroy');
 
     // Role
     Route::controller(RoleController::class)->group(function(){

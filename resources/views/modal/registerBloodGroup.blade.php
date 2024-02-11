@@ -8,8 +8,13 @@
             <form method="POST" action="" id="register_blood_group">
                 @csrf
                 <div class="modal-body">
-                    <div class="mb-3">
+                    <div class="form-group">
+                        <label for="bloodGroup">Enter Blood Group</label>
                         <input type="text" name="bloodGroup" id="bloodGroup" class="form-control" placeholder="Enter blood Group">
+                    </div>
+                    <div class="form-group">
+                        <label for="bloodGroupInfo">Enter Blood Group Detail</label>
+                        <textarea name="bloodGroupInfo" id="bloodGroupInfo" cols="10" rows="10" class="form-control"></textarea>
                     </div>
                 </div>
 

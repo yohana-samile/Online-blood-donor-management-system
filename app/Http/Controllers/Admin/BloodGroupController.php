@@ -18,11 +18,14 @@
         // blood/register_blood_group
         public function register_blood_group(Request $request){
             $validator = $request->validate([
-                'bloodGroup' =>'required'
+                'bloodGroup' =>'required',
+                'bloodGroupInfo' =>'required'
             ]);
             $bloodGroup = $request->input('bloodGroup');
+            $bloodGroupInfo = $request->input('bloodGroupInfo');
             Blood_group::create([
-                'bloodGroup' => $bloodGroup
+                'bloodGroup' => $bloodGroup,
+                'bloodGroupInfo' => $bloodGroupInfo
             ]);
             return response()->json(['success' => '/blood/']);
         }
@@ -31,11 +34,20 @@
         public function editBloodGroup(Request $request){
             $validator = $request->validate([
                 'bloodGroup' => 'required',
+                'bloodGroupInfo' => 'required',
                 'id' => 'required',
             ]);
             $bloodGroup = $request->input('bloodGroup');
+            $bloodGroupInfo = $request->input('bloodGroupInfo');
             $id = $request->input('id');
-            $update = DB::update("UPDATE blood_groups set bloodGroup = '$bloodGroup' where id = '$id' ");
+            $update = DB::table('blood_groups')
+                ->where('id', $id)
+                ->update([
+                    'bloodGroup' => $bloodGroup,
+                    'bloodGroupInfo' => $bloodGroupInfo
+                ]);
+                // $update = DB::update("UPDATE blood_groups set bloodGroup = '$bloodGroup', bloodGroupInfo = '$bloodGroupInfo' where id = '$id' ");
+
             if ($update) {
                 return response()->json(['success' => '/blood/']);
             }
@@ -46,13 +58,14 @@
 
 
         // delete_blood_group
-        public function delete_blood_group(Request $request){
-            $validator = $request->validate([
-                'id' => 'required',
-            ]);
-            $id = $request->input('id');
-            $update = DB::delete("DELETE from blood_groups where id = '$id' ");
-            if ($update) {
+        public function delete_blood_group($id){
+            // $validator = $request->validate([
+            //     'id' => 'required',
+            // ]);
+            // $id = $request->input('id');
+            $item = Blood_group::find($id)->delete($id);
+            // $update = DB::delete("DELETE from blood_groups where id = '$id' ");
+            if ($item) {
                 return response()->json(['success' => '/blood/']);
             }
             else{
