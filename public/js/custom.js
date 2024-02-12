@@ -317,5 +317,30 @@ $(document).ready(function () {
             }
         });
     });
+
+
+    // contact-messages
+    $('#send_my_message').on('submit', function (e) {
+        e.preventDefault();
+        let url = "sendPost";
+        let formData = new FormData(this);
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            // cache: false,
+            success: function (response) {
+                if (response === 'success') {
+                    alert('Message sent successfully');
+                }
+                $('#send_my_message')[0].reset();
+            },
+            error: function (error) {
+                swal.fire("error", "Something Went Wrong, Please Try Again", "error");
+            }
+        });
+    });
 });
 

@@ -59,13 +59,8 @@
 
         // delete_blood_group
         public function delete_blood_group($id){
-            // $validator = $request->validate([
-            //     'id' => 'required',
-            // ]);
-            // $id = $request->input('id');
-            $item = Blood_group::find($id)->delete($id);
-            // $update = DB::delete("DELETE from blood_groups where id = '$id' ");
-            if ($item) {
+            $delete = Blood_group::find($id)->delete($id);
+            if ($delete) {
                 return response()->json(['success' => '/blood/']);
             }
             else{

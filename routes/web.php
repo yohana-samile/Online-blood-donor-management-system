@@ -9,6 +9,7 @@
     use App\Http\Controllers\Admin\BloodGroupController;
     use App\Http\Controllers\Admin\RoleController;
     use App\Http\Controllers\Admin\NewAndUpdateController;
+    use App\Http\Controllers\Admin\ContactMessageController;
 
     /*
     |--------------------------------------------------------------------------
@@ -25,10 +26,13 @@
         return view('index');
     });
 
+    Route::post('sendPost', [ContactMessageController::class, 'sendPost']);
+
     Route::controller(LoginController::class)->group(function(){
         Route::get('/auth/login', 'login');
         Route::post('Auth/login', [LoginController::class, 'login'])->name('Auth/login');
     });
+
 
     // authenticated routes
     Auth::routes();
@@ -65,4 +69,7 @@
         Route::post('/news/edit_news_and_update', 'edit_news_and_update')->name('/news/edit_news_and_update');
         Route::post('/news/delete_news_and_update', 'delete_news_and_update')->name('/news/delete_news_and_update');
         Route::post('/news/publish_new', 'publish_new')->name('/news/publish_new');
-    });
+    })->middleware('auth');
+
+    // contact-messages
+    Route::get('contact-messages/', [ContactMessageController::class, 'index'])->middleware('auth');

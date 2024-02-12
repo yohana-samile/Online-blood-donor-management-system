@@ -22,7 +22,7 @@
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
 <body>
     <nav class="navbar navbar-expand-lg text-white bg-danger">
@@ -206,6 +206,9 @@
     {{-- news and update --}}
     <div class="container bg-light" id="new_and_update">
         <h4 class="text-center">news and update</h4>
+        @php
+            $get_news = DB::select("SELECT * FROM `new_and_updates`");
+        @endphp
         @if (!empty($get_news))
             <div class="row">
                 @foreach ($get_news as $get_new)
@@ -241,20 +244,21 @@
             </div>
             <div class="col-md-6">
                 <h4 class="text-center">Fill This Form To Contact With Us</h4>
-                <form>
+                <form id="send_my_message">
+                    @csrf
                     <div class="mb-3">
                         <label for="full_name" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="full_name" name="full_name">
+                        <input type="text" class="form-control" id="full_name" name="full_name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="Phone_number" class="form-label">Phone Number</label>
-                        <input type="tell" name="Phone_number" id="Phone_number" class="form-control">
+                        <label for="phone_number" class="form-label">Phone Number</label>
+                        <input type="tell" name="phone_number" id="phone_number" class="form-control" required>
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Enter Your Message</label>
-                        <textarea name="message" id="message" class="form-control" cols="30" rows="10"></textarea>
+                        <textarea name="message" id="message" class="form-control" cols="30" rows="10" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-danger">Send Message</button>
+                    <button type="submit" class="send_my_message btn btn-danger">Send Message</button>
                 </form>
             </div>
         </div>

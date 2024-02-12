@@ -94,7 +94,7 @@
                             <a href="{{ url('news/') }}"><span class="fa fa-newspaper-o mr-3 text-white"></span> {{__('News & Update')}}</a>
                         </li>
                         <li>
-                            <a href="{{ url('roles/') }}"><span class="fa fa-envelope-o mr-3 text-white"></span> {{__('Messages')}}</a>
+                            <a href="{{ url('contact-messages/') }}"><span class="fa fa-envelope-o mr-3 text-white"></span> {{__('Messages')}}</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

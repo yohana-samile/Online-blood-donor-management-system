@@ -6,7 +6,7 @@
                 <h5 class="modal-title" id="editBloodGroup">{{('Edit This Blood Group')}}</h5>
                 <button type="button" class="btn-danger text-white btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="/blood/editBloodGroup" id="edit_blood_group">
+            <form method="POST" action="" id="edit_blood_group">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">

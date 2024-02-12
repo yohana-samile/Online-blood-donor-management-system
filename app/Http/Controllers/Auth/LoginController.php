@@ -64,7 +64,6 @@
         }
 
         public function index() {
-            $get_news = DB::select("SELECT * FROM `new_and_updates`");
-            return view('index', ['get_news' => $get_news]);
+            return view('index');
         }
     }
