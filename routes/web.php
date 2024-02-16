@@ -10,7 +10,6 @@
     use App\Http\Controllers\Admin\RoleController;
     use App\Http\Controllers\Admin\NewAndUpdateController;
     use App\Http\Controllers\Admin\ContactMessageController;
-
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -51,7 +50,6 @@
         Route::post('/blood/editBloodGroup', 'editBloodGroup')->name('/blood/editBloodGroup');
         Route::delete('/blood/delete_blood_group/{id}', 'delete_blood_group');
     })->middleware('auth');
-    // Route::delete('items/{id}', 'ItemController@destroy')->name('items.destroy');
 
     // Role
     Route::controller(RoleController::class)->group(function(){
@@ -60,7 +58,6 @@
         Route::post('roles/edit_role', 'edit_role')->name('roles/edit_role');
         Route::post('/roles/delete_role', 'delete_role')->name('/roles/delete_role');
     })->middleware('auth');
-
 
     // news and update
     Route::controller(NewAndUpdateController::class)->group(function () {
@@ -72,4 +69,8 @@
     })->middleware('auth');
 
     // contact-messages
-    Route::get('contact-messages/', [ContactMessageController::class, 'index'])->middleware('auth');
+    Route::controller(ContactMessageController::class)->group(function () {
+        Route::get('contact-messages/', 'index');
+        Route::delete('/contact-messages/delete_user_query/{id}', 'delete_user_query')->name('/contact-messages/delete_user_query');
+        Route::post('/contact-messages/send_sms_replay', 'send_sms_replay')->name('/contact-messages/send_sms_replay');
+    })->middleware('auth');

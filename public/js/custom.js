@@ -244,7 +244,7 @@ $(document).ready(function () {
         });
     });
 
-
+    // delete_new
     $('#delete_new').on('submit', function (e) {
         e.preventDefault();
         let url = "/news/delete_news_and_update";
@@ -339,6 +339,68 @@ $(document).ready(function () {
             },
             error: function (error) {
                 swal.fire("error", "Something Went Wrong, Please Try Again", "error");
+            }
+        });
+    });
+
+
+    // delete_user_query
+    $(document).on('click', '#delete_query', function () {
+        var id = $(this).data('id');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "/contact-messages/delete_user_query/" + id,
+            type: "DELETE",
+            dataType: 'json',
+            data: {
+                "id": id
+            },
+            success: function (response) {
+                if (response.success) {
+                    swal.fire("success", "User Query Deleted Successfully", "success");
+                }
+                window.location.href = response.success;
+                $('#delete_query')[0].reset();
+            },
+            error: function (error) {
+                swal.fire("Error", "Something went wrong, please try again", "error");
+            }
+        });
+    });
+
+
+    // send_replay
+    $('#send_sms_replay').on('submit', function (e) {
+        e.preventDefault();
+        let id = $('#id').val();
+        let url = "/contact-messages/send_sms_replay";
+        let formData = new FormData(this);
+        $('.loader').show();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('.loader').hide();
+                if (response.success) {
+                    swal.fire("Success", "replation sent successfully", "success").then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = response.success;
+                            $('#send_sms_replay')[0].reset();
+                        }
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                $('.loader').hide();
+                var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
+                swal.fire("Error", errorMessage, "error");
             }
         });
     });

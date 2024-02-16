@@ -13,7 +13,7 @@
                 $table->text('full_name');
                 $table->integer('phone_number');
                 $table->text('message');
-                $table->text('message_status')->default(true);
+                $table->text('message_status')->default(false);
                 $table->timestamps();
             });
         }
