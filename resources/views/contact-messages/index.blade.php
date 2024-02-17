@@ -43,10 +43,11 @@
                                 </td>
                                 <td>
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        {{-- <a href="{{ url('contact-messages/send_replay/' .$query->id ) }}" class="text-decoration-none"><i class="fa fa-envelope text-primary"></i></a> --}}
-                                        <a href="javascript:void()" data-target="#replayToNormalSmS{{ $query->id }}" data-toggle="modal" class="text-decoration-none"><i class="fa fa-envelope text-primary"></i></a>
-                                    </div>
+                                    @if ($query->message_status != 1)
+                                        <div class="col-md-4">
+                                            <a href="javascript:void()" data-target="#replayToNormalSmS{{ $query->id }}" data-toggle="modal" class="text-decoration-none"><i class="fa fa-envelope text-primary"></i></a>
+                                        </div>
+                                    @endif
                                     <div class="col-md-4">
                                         <button id="delete_query" data-id="{{ $query->id }}" class="btn btn-white"><i class="fa fa-trash text-danger"></i></button>
                                     </div>

@@ -388,14 +388,14 @@ $(document).ready(function () {
             processData: false,
             success: function (response) {
                 $('.loader').hide();
-                if (response.success) {
+                // if (response.success) {
                     swal.fire("Success", "replation sent successfully", "success").then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = response.success;
+                            window.location.href = "/contact-messages";
                             $('#send_sms_replay')[0].reset();
                         }
                     });
-                }
+                // }
             },
             error: function(xhr, status, error) {
                 $('.loader').hide();
