@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    @include('url')
     <div class="container">
         <button class="float-right btn btn-danger" data-target="#news_and_update" data-toggle="modal" aria-hidden="false">Add New <i class="fa fa-plus"></i></button>
         @if (!empty($get_news))

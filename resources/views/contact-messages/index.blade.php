@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    @include('url')
     <div class="container">
         @if (!empty($get_user_query))
             <div class="table-responsive">
