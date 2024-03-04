@@ -97,6 +97,9 @@
                             <a href="{{ url('contact-messages/') }}"><span class="fa fa-envelope-o mr-3 text-white"></span> {{__('Messages')}}</a>
                         </li>
                         <li>
+                            <a href="{{ url('residence-locations/') }}"><span class="fa fa-globe mr-3 text-white"></span> {{__('Residence')}}</a>
+                        </li>
+                        <li>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span class="fa fa-sign-out mr-3 text-white"></span>
                                 {{ __('Logout') }}
@@ -106,10 +109,10 @@
                                 @csrf
                             </form>
                         </li>
+                        <a id="navbarDropdown" class="navbar-brand text-white" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{' Welcome Dear'}} <br> {{ Auth::user()->name }}
+                        </a>
                     </ul>
-                    <a id="navbarDropdown" class="navbar-brand text-white" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{' Welcome Dear'}} <br> {{ Auth::user()->name }}
-                    </a>
                 </div>
             </nav>
 

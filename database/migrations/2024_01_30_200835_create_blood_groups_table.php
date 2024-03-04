@@ -21,6 +21,6 @@
          * Reverse the migrations.
          */
         public function down(): void {
-            Schema::dropIfExists('_blood_groups');
+            Schema::dropIfExists('blood_groups');
         }
     };

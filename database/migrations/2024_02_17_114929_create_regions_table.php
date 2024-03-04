@@ -8,10 +8,10 @@
          * Run the migrations.
          */
         public function up(): void {
-            Schema::create('roles', function (Blueprint $table) {
+            Schema::create('regions', function (Blueprint $table) {
                 $table->id();
-                $table->string('role_name');
-                $table->timestamps();
+                $table->text('name');
+                $table->text('code');
             });
         }
 
@@ -19,6 +19,6 @@
          * Reverse the migrations.
          */
         public function down(): void {
-            Schema::dropIfExists('roles');
+            Schema::dropIfExists('regions');
         }
     };

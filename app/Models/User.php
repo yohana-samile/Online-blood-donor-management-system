@@ -42,7 +42,7 @@
         public function Role(){
             $this->belongsTo(Role::class);
         }
-        
+
         public function New_and_update(){
             $this->hasMany(New_and_update::class);
         }
@@ -56,5 +56,9 @@
         }
         public function Hospital (){
             return $this->hasOne(Hospital::class);
+        }
+
+        public function profile(){
+            return $this->hasOne(Profile::class);
         }
     }

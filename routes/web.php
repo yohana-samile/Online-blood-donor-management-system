@@ -10,6 +10,7 @@
     use App\Http\Controllers\Admin\RoleController;
     use App\Http\Controllers\Admin\NewAndUpdateController;
     use App\Http\Controllers\Admin\ContactMessageController;
+    use App\Http\Controllers\Admin\ResidenceController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -30,6 +31,14 @@
     Route::controller(LoginController::class)->group(function(){
         Route::get('/auth/login', 'login');
         Route::post('Auth/login', [LoginController::class, 'login'])->name('Auth/login');
+    });
+
+    Route::controller(RegisterController::class)->group(function (){
+        Route::post('regsterMe', 'registerMe')->name('registerMe');
+        Route::get('fetchdistricts/{regionId}', 'fetchdistricts')->name('fetchdistricts');
+        Route::get('fetchwards/{districtId}', 'fetchwards')->name('fetchwards');
+        Route::get('fetchstreets/{wardId}', 'fetchstreets')->name('fetchstreets');
+        Route::get('fetchplaces/{streetId}', 'fetchplaces')->name('fetchplaces');
     });
 
 
@@ -73,4 +82,15 @@
         Route::get('contact-messages/', 'index');
         Route::delete('/contact-messages/delete_user_query/{id}', 'delete_user_query')->name('/contact-messages/delete_user_query');
         Route::post('/contact-messages/send_sms_replay', 'send_sms_replay')->name('/contact-messages/send_sms_replay');
+    })->middleware('auth');
+
+
+    // residence-locations
+    Route::controller(ResidenceController::class)->group(function (){
+        Route::get('residence-locations/', 'index');
+        Route::post('/residence-locations/uploadLocation', 'uploadLocation')->name('/residence-locations/uploadLocation');
+        Route::post('/residence-locations/uploadDistrict', 'uploadDistrict')->name('/residence-locations/uploadDistrict');
+        Route::post('/residence-locations/uploadRegions', 'uploadRegions')->name('/residence-locations/uploadRegions');
+        Route::post('/residence-locations/uploadWard', 'uploadWard')->name('/residence-locations/uploadWard');
+        Route::post('/residence-locations/uploadward_streets_places', 'uploadward_streets_places')->name('/residence-locations/uploadward_streets_places');
     })->middleware('auth');

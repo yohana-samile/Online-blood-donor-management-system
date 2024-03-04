@@ -1,3 +1,32 @@
+// tabs for location
+function openLocation(evt, action) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(action).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+function openUserLocation(evt, locationAction) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(locationAction).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
 $(document).ready(function () {
     $('#log_me_in').on('submit', function (e) {
         e.preventDefault();
@@ -404,5 +433,184 @@ $(document).ready(function () {
             }
         });
     });
+
+
+
+    // submit csv for tz regions
+    $('#saveLocations').on('submit', function (e) {
+        e.preventDefault();
+        let url = "/residence-locations/uploadLocation";
+        let formData = new FormData(this);
+        $('.loader').show();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('.loader').hide();
+                // if (response.success) {
+                    swal.fire("Success", "Location Inserted", "success").then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "/residence-locations";
+                            $('#saveLocations')[0].reset();
+                        }
+                    });
+                // }
+            },
+            error: function(xhr, status, error) {
+                $('.loader').hide();
+                var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
+                swal.fire("Error", errorMessage, "error");
+            }
+        });
+    });
+
+
+    // regions
+    $('#saveRegions').on('submit', function (e) {
+        e.preventDefault();
+        let url = "/residence-locations/uploadRegions";
+        let formData = new FormData(this);
+        $('.loader').show();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('.loader').hide();
+                // if (response.success) {
+                    swal.fire("Success", "Regions Inserted", "success").then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "/residence-locations";
+                            $('#saveRegions')[0].reset();
+                        }
+                    });
+                // }
+            },
+            error: function(xhr, status, error) {
+                $('.loader').hide();
+                var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
+                swal.fire("Error", errorMessage, "error");
+            }
+        });
+    });
+
+    // getting value of streets
+    // Enable district field when region is selected
+    $('#region').change(function() {
+        var regionId = $(this).val();
+        // console.log("Selected region Name: " + regionId);
+
+        if (regionId) {
+            $('#district').prop('disabled', false);
+            $('#district').empty().append('<option selected hidden disabled>Fetching Districts...</option>');
+
+            // Fetch districts based on selected region
+            $.ajax({
+                url: '/fetchdistricts/' + regionId,
+                type: 'GET',
+                success: function(data) {
+                    // console.log(data); // Debugging line
+                    $('#district').empty().append('<option selected hidden disabled>Choose District</option>');
+                    $.each(data, function(index, district) {
+                        $('#district').append('<option value="' + district.district + '">' + district.district + '</option>');
+                    });
+                }
+            });
+        } else {
+            $('#district').prop('disabled', true);
+        }
+    });
+
+// Enable ward field when district is selected
+$('#district').change(function() {
+        var districtId = $(this).val();
+        if (districtId) {
+            $('#ward').prop('disabled', false);
+            $('#ward').empty().append('<option selected hidden disabled>Fetching Wards...</option>');
+
+            // Fetch wards based on selected district
+            $.ajax({
+                url: '/fetchwards/' + districtId,
+                type: 'GET',
+                success: function(data) {
+                    $('#ward').empty().append('<option selected hidden disabled>Choose Ward</option>');
+                    $.each(data, function(key, value) {
+                        $('#ward').append('<option value="' + value.ward + '">' + value.ward + '</option>');
+                    });
+                }
+            });
+        } else {
+            $('#ward').prop('disabled', true);
+        }
+    });
+
+    // Enable street field when ward is selected
+    $('#ward').change(function() {
+        var wardId = $(this).val();
+        console.log(wardId);
+        if (wardId) {
+            $('#street').prop('disabled', false);
+            $('#street').empty().append('<option selected hidden disabled>Fetching Streets...</option>');
+
+            // Fetch streets based on selected ward
+            $.ajax({
+                url: '/fetchstreets/' + wardId,
+                type: 'GET',
+                success: function(data) {
+                    console.log(data);
+                    $('#street').empty().append('<option selected hidden disabled>Choose Street</option>');
+                    $.each(data, function(index, street) {
+                        $('#street').append('<option value="' + street.street + '">' + street.street + '</option>');
+                    });
+                }
+            });
+        } else {
+            $('#street').prop('disabled', true);
+        }
+    });
+
+    // Update place returned from street selection
+    $('#street').change(function() {
+        var place = $(this).find('option:selected').text();
+        $('#placereturnedfromstreetselection').val(place);
+    });
+
+
+    // user regtration
+    $('#register_me_to_become_donor').on('submit', function (e) {
+        e.preventDefault();
+        let url = "/registerMe";
+        let formData = new FormData(this);
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            success: function (response) {
+                $('.loader').hide();
+                // if (response.success) {
+                    swal.fire("Success", "Your Registration Is Complite Login Via Email and password sent", "success").then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "/";
+                            $('#saveRegions')[0].reset();
+                        }
+                    });
+                // }
+            },
+            error: function (xhr, status, error) {
+                $('.loader').hide();
+                var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
+                swal.fire("Error", errorMessage, "error");
+
+            }
+        })
+    });
+
+
 });
 

@@ -7,4 +7,8 @@
     class Blood_group extends Model {
         use HasFactory;
         protected $fillable = ['bloodGroup', 'bloodGroupInfo'];
+
+        public function profile(){
+            return $this->hasMany(Profile::class);
+        }
     }
