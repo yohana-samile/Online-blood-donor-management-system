@@ -34,7 +34,7 @@
     });
 
     Route::controller(RegisterController::class)->group(function (){
-        Route::post('regsterMe', 'registerMe')->name('registerMe');
+        Route::post('Auth/registerMe', 'registerMe')->name('Auth/registerMe');
         Route::get('fetchdistricts/{regionId}', 'fetchdistricts')->name('fetchdistricts');
         Route::get('fetchwards/{districtId}', 'fetchwards')->name('fetchwards');
         Route::get('fetchstreets/{wardId}', 'fetchstreets')->name('fetchstreets');

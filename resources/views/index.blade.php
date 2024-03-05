@@ -141,6 +141,8 @@
             <div class="col-md-6">
                 <h4 class="text-center">Free Regratation For Donors</h4>
                 <form id="register_me_to_become_donor">
+                    <div class="loader" style="display: none;"></div>
+                    @csrf
                     <div class="mb-3">
                         <label for="regstrationFull_name" class="form-label">Full Name</label>
                         <input type="text" class="form-control" id="regstrationFull_name" name="regstrationFull_name">
@@ -196,7 +198,7 @@
                             <div class="mb-3">
                                 @php
                                     $get_donor_region = DB::select("SELECT * FROM `regions`");
-                                    $role = DB::table('roles')->where('role_name', 'donor')->first();
+                                    // $role = DB::table('roles')->where('role_name', 'donor')->first();
                                 @endphp
                                 <label for="region" class="form-label">Region</label>
                                 <select name="region" id="region" class="form-control">
@@ -234,8 +236,8 @@
                                 <select name="street" id="street" class="form-control" disabled>
                                     <option selected hidden disabled>Choose Street</option>
                                 </select>
-                                <input type="hidden" value="{{ $role->id }}" name="role" id="role">
-                                <input type="hidden" value="" name="places" id="placereturnedfromstreetselection">
+                                {{-- <input type="hidden" value="{{ $role->id }}" name="role" id="role"> --}}
+                                <input type="hidden" name="places" id="placereturnedfromstreetselection">
 
                             </div>
                         </div>

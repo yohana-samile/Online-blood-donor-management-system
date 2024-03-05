@@ -552,7 +552,7 @@ $('#district').change(function() {
     // Enable street field when ward is selected
     $('#ward').change(function() {
         var wardId = $(this).val();
-        console.log(wardId);
+        // console.log(wardId);
         if (wardId) {
             $('#street').prop('disabled', false);
             $('#street').empty().append('<option selected hidden disabled>Fetching Streets...</option>');
@@ -562,7 +562,7 @@ $('#district').change(function() {
                 url: '/fetchstreets/' + wardId,
                 type: 'GET',
                 success: function(data) {
-                    console.log(data);
+                    // console.log(data);
                     $('#street').empty().append('<option selected hidden disabled>Choose Street</option>');
                     $.each(data, function(index, street) {
                         $('#street').append('<option value="' + street.street + '">' + street.street + '</option>');
@@ -584,20 +584,23 @@ $('#district').change(function() {
     // user regtration
     $('#register_me_to_become_donor').on('submit', function (e) {
         e.preventDefault();
-        let url = "/registerMe";
+        let url = "/Auth/registerMe";
         let formData = new FormData(this);
+        $('.loader').show();
 
         $.ajax({
             url: url,
             type: "POST",
             data: formData,
+            contentType: false,
+            processData: false,
             success: function (response) {
                 $('.loader').hide();
                 // if (response.success) {
                     swal.fire("Success", "Your Registration Is Complite Login Via Email and password sent", "success").then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = "/";
-                            $('#saveRegions')[0].reset();
+                            // window.location.href = "/";
+                            $('#register_me_to_become_donor')[0].reset();
                         }
                     });
                 // }

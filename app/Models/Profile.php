@@ -6,7 +6,7 @@
 
     class Profile extends Model {
         use HasFactory;
-        protected $fillable = ['role', 'blood_group', 'region', 'district', 'ward', 'street', 'gender', 'phone_number'];
+        protected $fillable = ['blood_group_id', 'region', 'district', 'ward', 'street', 'places', 'gender', 'phone_number'];
 
         public function user(){
             return $this->belongsTo(User::class);
