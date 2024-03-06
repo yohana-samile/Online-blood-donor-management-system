@@ -5,7 +5,8 @@
         <div class="card-header py-3">
             <div class="row">
                 <div class="col-md-6">
-                    <h6 class="m-0 font-weight-bold text-dark">Donars</h6>
+                    <h6 class="m-0 font-weight-bold text-dark"> Notify Donars About Donation</h6>
+                    <button data-target="#send_notification" data-toggle="modal" class="btn btn-sm btn-dark text-white">Noty <i class="fa fa-envelope"></i></button>
                 </div>
                 <div class="col-md-6">
                     <div class="btn btn-danger text-white float-right">
@@ -107,4 +108,5 @@
 
   <!-- Modal -->
     @include('modal.registerDonar')
+    @include('modal.send_notification')
 @endsection

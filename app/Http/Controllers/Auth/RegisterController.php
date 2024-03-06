@@ -117,6 +117,7 @@
             $profile->phone_number = $data['phoneNumber'];
             $profile->blood_group_id = $data['blood_group'];
             $user->Profile()->save($profile); // save it using the hasOne
+            // send username and password to registered user
             if ($user) {
                 //…. Api url
                 $Url ='https://apisms.beem.africa/v1/send';
