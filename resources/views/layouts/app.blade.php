@@ -79,7 +79,7 @@
                             <a href="{{ url('home') }}"><span class="fa fa-home mr-3 text-white"></span> {{'Home'}}</a>
                         </li>
                         <li>
-                            <a href="{{ url('donar/index') }}"><span class="fa fa-user mr-3 text-white"></span> {{'Donars'}}</a>
+                            <a href="{{ url('donar/') }}"><span class="fa fa-user mr-3 text-white"></span> {{'Donars'}}</a>
                         </li>
                         <li>
                             <a href="#"><span class="fa fa-h-square mr-3 text-white"></span> {{'Hospitals'}}</a>

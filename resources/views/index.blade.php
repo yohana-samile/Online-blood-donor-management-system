@@ -151,7 +151,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="phoneNumber" class="form-label">Phone Number</label>
-                                <input type="tell" name="phoneNumber" id="phoneNumber" class="form-control">
+                                <input type="tel" name="phoneNumber" id="phoneNumber" class="form-control" pattern="[1-9][0-9]{8}" title="Please enter a valid phone number without leading zeros or +255">
                             </div>
                         </div>
                         <div class="col-md-6">

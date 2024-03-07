@@ -11,6 +11,7 @@
     use App\Http\Controllers\Admin\NewAndUpdateController;
     use App\Http\Controllers\Admin\ContactMessageController;
     use App\Http\Controllers\Admin\ResidenceController;
+    use App\Http\Controllers\Admin\SmSNotificationController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -41,16 +42,14 @@
         Route::get('fetchplaces/{streetId}', 'fetchplaces')->name('fetchplaces');
     });
 
-
     // authenticated routes
     Auth::routes();
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    // registration
+    //donar registration
     Route::controller(RegisterUserController::class)->group(function(){
-        Route::get('/donar/index', 'index');
+        Route::get('/donar', 'index');
     })->middleware('auth');
-
 
     // blood
     Route::controller(BloodGroupController::class)->group(function(){
@@ -84,6 +83,14 @@
         Route::post('/contact-messages/send_sms_replay', 'send_sms_replay')->name('/contact-messages/send_sms_replay');
     })->middleware('auth');
 
+    // sms notifications
+    Route::controller(SmSNotificationController::class)->group(function (){
+        Route::post('/donar/sendNotification', 'sendNotification')->name('/donar/sendNotification');
+        Route::get('fetchdistricts/{regionId}', 'fetchdistricts')->name('fetchdistricts');
+        Route::get('fetchwards/{districtId}', 'fetchwards')->name('fetchwards');
+        Route::get('fetchstreets/{wardId}', 'fetchstreets')->name('fetchstreets');
+        Route::get('fetchplaces/{streetId}', 'fetchplaces')->name('fetchplaces');
+    })->middleware('auth');
 
     // residence-locations
     Route::controller(ResidenceController::class)->group(function (){

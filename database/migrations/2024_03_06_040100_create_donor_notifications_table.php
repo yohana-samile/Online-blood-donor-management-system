@@ -14,8 +14,8 @@
                 $table->string('district_to_be_conducted');
                 $table->string('ward_to_be_conducted');
                 $table->string('street_to_be_conducted');
-                $table->string('place_to_be_conducted');
-                $table->string('sms_notification');
+                $table->dateTime('time_to_be_conducted');
+                $table->text('sms_notification');
                 $table->timestamps();
             });
         }
@@ -23,8 +23,7 @@
         /**
          * Reverse the migrations.
          */
-        public function down(): void
-        {
+        public function down(): void {
             Schema::dropIfExists('donor_notifications');
         }
     };

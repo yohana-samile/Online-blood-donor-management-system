@@ -56,7 +56,6 @@
             }
         }
 
-
         // delete_blood_group
         public function delete_blood_group($id){
             $delete = Blood_group::find($id)->delete($id);

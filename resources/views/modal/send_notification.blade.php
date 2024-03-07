@@ -20,7 +20,7 @@
                                     $get_donor_region = DB::select("SELECT * FROM `regions`");
                                 @endphp
                                 <label for="region" class="form-label">Region</label>
-                                <select name="region" id="region" class="form-control">
+                                <select name="region_to_be_conducted" id="region" class="form-control">
                                     <option selected hidden disabled>Choose Region</option>
                                     @foreach ($get_donor_region as $get_donor_regions)
                                         <option value="{{ $get_donor_regions->name }}">{{ $get_donor_regions->name }}</option>
@@ -31,7 +31,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="district" class="form-label">District</label>
-                                <select name="district" id="district" class="form-control" disabled>
+                                <select name="district_to_be_conducted" id="district" class="form-control" disabled>
                                     <option selected hidden disabled>Choose District</option>
                                 </select>
                             </div>
@@ -42,7 +42,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="ward" class="form-label">Ward</label>
-                                <select name="ward" id="ward" class="form-control" disabled>
+                                <select name="ward_to_be_conducted" id="ward" class="form-control" disabled>
                                     <option selected hidden disabled>Choose Ward</option>
                                 </select>
                             </div>
@@ -51,18 +51,19 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="street" class="form-label">Street</label>
-                                <select name="street" id="street" class="form-control" disabled>
+                                <select name="street_to_be_conducted" id="street" class="form-control" disabled>
                                     <option selected hidden disabled>Choose Street</option>
                                 </select>
-                                {{-- <input type="hidden" value="{{ $role->id }}" name="role" id="role"> --}}
-                                <input type="hidden" name="places" id="placereturnedfromstreetselection">
-
                             </div>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="message_replay">Enter SmS For Notification</label>
-                        <textarea name="message_replay" id="message_replay" class="form-control" placeholder="Enter SmS For Notification" cols="10" rows="10"></textarea>
+                        <label for="time_to_be_conducted">time to be conducted"</label>
+                        <input type="datetime-local" name="time_to_be_conducted" id="time_to_be_conducted" placeholder="time to be conducted" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sms_notification">Enter SmS For Notification</label>
+                        <textarea name="sms_notification" id="sms_notification" class="form-control" cols="10" rows="10" required></textarea>
                     </div>
                 </div>
 
