@@ -7,6 +7,9 @@
     use Illuminate\Http\JSonHttpResponse;
     use App\Models\Blood_group;
     use App\Models\Blood_donation_record;
+    use App\Models\Blood_request;
+    use Auth;
+
 
     class BloodGroupController extends Controller {
         public function index(){
@@ -101,5 +104,37 @@
             $id = $request->input('id');
             DB::update(" update blood_donation_records set status = 'used' where id = '$id' ");
             return response()->json(['success' => '/blood/blood-donation']);
+        }
+
+        // blood request
+        public function bloodRequest() {
+            $hosp_id = Auth::user()->id;
+            $requestRecord = DB::select("SELECT users.id, blood_requests.date_requested, blood_requests.status, blood_groups.bloodGroup, blood_requests.amountInLtr FROM blood_requests, blood_groups, users WHERE blood_requests.blood_group_id = blood_groups.id AND user_id = '$hosp_id' ");
+            $bGroups = DB::select("SELECT * FROM blood_groups ");
+            return view('/blood/blood-request',[
+                'requestRecord' => $requestRecord,
+                'bGroups' => $bGroups
+            ]);
+        }
+
+        // sendBloodRequest
+        public function sendBloodRequest(Request $request){
+            $validator = $request->validate([
+                'blood_group_id' =>'required',
+                'date_requested' =>'required',
+                'user_id' =>'required',
+                'amountInLtr' =>'required',
+            ]);
+            $blood_group_id = $request->input('blood_group_id');
+            $date_requested = $request->input('date_requested');
+            $user_id = $request->input('user_id');
+            $amountInLtr = $request->input('amountInLtr');
+            Blood_request::create([
+                'blood_group_id' => $blood_group_id,
+                'date_requested' => $date_requested,
+                'user_id' => $user_id,
+                'amountInLtr' => $amountInLtr,
+            ]);
+            return response()->json(['success' => '/blood/blood-request']);
         }
     }

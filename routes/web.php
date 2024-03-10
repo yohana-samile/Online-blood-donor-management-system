@@ -63,6 +63,9 @@
         Route::get('/blood/blood-donation', 'bloodDonation');
         Route::post('/blood/saveRecord', 'saveRecord')->name('/blood/saveRecord');
         Route::post('/blood/updateSavedRecord', 'updateSavedRecord')->name('/blood/updateSavedRecord');
+        // blood request for hospital only
+        Route::get('/blood/blood-request', 'bloodRequest');
+        Route::post('/blood/sendBloodRequest', 'sendBloodRequest')->name('/blood/sendBloodRequest');
     })->middleware('auth');
 
     // Role

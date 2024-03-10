@@ -11,4 +11,8 @@
         public function profile(){
             return $this->hasMany(Profile::class);
         }
+
+        public function blood_request(){
+            return $this->hasMany(Blood_request::class);
+        }
     }

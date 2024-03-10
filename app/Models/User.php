@@ -65,4 +65,8 @@
         public function blood_donation_record(){
             return $this->hasMany(Blood_donation_record::class);
         }
+
+        public function blood_request(){
+            return $this->hasMany(Blood_request::class);
+        }
     }

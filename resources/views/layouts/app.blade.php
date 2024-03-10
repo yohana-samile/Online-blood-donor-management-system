@@ -20,6 +20,11 @@
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+                    <!-- Include jQuery -->
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                    <!-- Include Select2 JS -->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -114,7 +119,7 @@
                             </li>
                         @elseif (Auth::user()->role_id == 2) {{-- hospital --}}
                             <li>
-                                <a href="{{ url('contact-messages/') }}"><span class="fa fa-database-o mr-3 text-white"></span> {{__('Request Blood')}}</a>
+                                <a href="{{ url('/blood/blood-request') }}"><span class="fa fa-spinner mr-3 text-white"></span> {{__('Request Blood')}}</a>
                             </li>
                         @else {{-- donors --}}
                             <li>
@@ -151,7 +156,6 @@
             </div>
         </div>
     @endif
-
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ url("js/custom.js")}}"></script>
