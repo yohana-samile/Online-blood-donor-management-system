@@ -20,6 +20,9 @@
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 
 </head>
@@ -78,27 +81,46 @@
                         <li class="active">
                             <a href="{{ url('home') }}"><span class="fa fa-home mr-3 text-white"></span> {{'Home'}}</a>
                         </li>
-                        <li>
-                            <a href="{{ url('donar/') }}"><span class="fa fa-user mr-3 text-white"></span> {{'Donars'}}</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="fa fa-h-square mr-3 text-white"></span> {{'Hospitals'}}</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('blood/') }}"><span class="fa fa-paper-plane mr-3 text-white"></span> {{__('Blood')}}</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('roles/') }}"><span class="fa fa-paper-plane mr-3 text-white"></span> {{__('Roles')}}</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('news/') }}"><span class="fa fa-newspaper-o mr-3 text-white"></span> {{__('News & Update')}}</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('contact-messages/') }}"><span class="fa fa-envelope-o mr-3 text-white"></span> {{__('Messages')}}</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('residence-locations/') }}"><span class="fa fa-globe mr-3 text-white"></span> {{__('Residence')}}</a>
-                        </li>
+                        @if(Auth::user()->role_id == 3)
+                            <li>
+                                <a href="{{ url('donar/') }}"><span class="fa fa-user mr-3 text-white"></span> {{'Donars'}}</a>
+                            </li>
+                            <li>
+                                <a href="/hospital"><span class="fa fa-h-square mr-3 text-white"></span> {{'Hospitals'}}</a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    Blood
+                                </a>
+                                <ul class="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item text-dark text-center" href="{{ url('blood/') }}">{{__('group')}}</a></li>
+                                    <li><a class="dropdown-item text-dark text-center" href="{{ url('blood-request/') }}">{{__('Request')}}</a></li>
+                                    <li><a class="dropdown-item text-dark text-center" href="{{ url('/blood/blood-donation') }}">{{__('Donation')}}</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li>
+                                <a href="{{ url('roles/') }}"><span class="fa fa-paper-plane mr-3 text-white"></span> {{__('Roles')}}</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('news/') }}"><span class="fa fa-newspaper-o mr-3 text-white"></span> {{__('News & Update')}}</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('contact-messages/') }}"><span class="fa fa-envelope-o mr-3 text-white"></span> {{__('Messages')}}</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('residence-locations/') }}"><span class="fa fa-globe mr-3 text-white"></span> {{__('Residence')}}</a>
+                            </li>
+                        @elseif (Auth::user()->role_id == 2) {{-- hospital --}}
+                            <li>
+                                <a href="{{ url('contact-messages/') }}"><span class="fa fa-database-o mr-3 text-white"></span> {{__('Request Blood')}}</a>
+                            </li>
+                        @else {{-- donors --}}
+                            <li>
+                                <a href="{{ url('contact-messages/') }}"><span class="fa fa-database mr-3 text-white"></span> {{__('Your Donation')}}</a>
+                            </li>
+                        @endif
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span class="fa fa-sign-out mr-3 text-white"></span>

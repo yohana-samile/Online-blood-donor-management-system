@@ -12,6 +12,8 @@
     use App\Http\Controllers\Admin\ContactMessageController;
     use App\Http\Controllers\Admin\ResidenceController;
     use App\Http\Controllers\Admin\SmSNotificationController;
+    use App\Http\Controllers\Admin\HospitalController;
+
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -49,6 +51,7 @@
     //donar registration
     Route::controller(RegisterUserController::class)->group(function(){
         Route::get('/donar', 'index');
+        Route::post('/donar/register_new_donor', 'register_new_donor')->name('/donar/register_new_donor');
     })->middleware('auth');
 
     // blood
@@ -57,6 +60,9 @@
         Route::post('/blood/register_blood_group', 'register_blood_group')->name('blood/register_blood_group');
         Route::post('/blood/editBloodGroup', 'editBloodGroup')->name('/blood/editBloodGroup');
         Route::delete('/blood/delete_blood_group/{id}', 'delete_blood_group');
+        Route::get('/blood/blood-donation', 'bloodDonation');
+        Route::post('/blood/saveRecord', 'saveRecord')->name('/blood/saveRecord');
+        Route::post('/blood/updateSavedRecord', 'updateSavedRecord')->name('/blood/updateSavedRecord');
     })->middleware('auth');
 
     // Role
@@ -101,3 +107,9 @@
         Route::post('/residence-locations/uploadWard', 'uploadWard')->name('/residence-locations/uploadWard');
         Route::post('/residence-locations/uploadward_streets_places', 'uploadward_streets_places')->name('/residence-locations/uploadward_streets_places');
     })->middleware('auth');
+
+    // HospitalController
+    Route::controller(HospitalController::class)->group( function (){
+        route::get('hospital/', 'index');
+        route::post('/hospital/registerHospital', 'registerHospital')->name('/hospital/registerHospital');
+    });

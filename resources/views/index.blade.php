@@ -242,8 +242,8 @@
                             </div>
                         </div>
                     </div>
-                    <p>Hospital Registration click <a href=""> HERE</a></p>
-                    <button type="submit" class="btn btn-danger">Register</button>
+                    <p>{{('Hospital Registration Contact ')}}<a href="javascript:void()"> {{('+255620350083')}}</a></p>
+                    <button type="submit" class="btn btn-danger">{{("Register")}}</button>
                 </form>
             </div>
         </div>

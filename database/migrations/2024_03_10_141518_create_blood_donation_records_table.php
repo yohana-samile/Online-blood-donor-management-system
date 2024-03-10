@@ -8,15 +8,12 @@
          * Run the migrations.
          */
         public function up(): void {
-            Schema::create('hospitals', function (Blueprint $table) {
+            Schema::create('blood_donation_records', function (Blueprint $table) {
                 $table->id();
-                $table->string('region');
-                $table->string('district');
-                $table->string('ward');
-                $table->string('phone_number');
-                $table->string('address');
-                $table->timestamps();
                 $table->foreignIdFor(\App\Models\User::class)->constrained();
+                $table->date('date_donate');
+                $table->string('status')->default('unused');
+                $table->timestamps();
             });
         }
 
@@ -24,6 +21,6 @@
          * Reverse the migrations.
          */
         public function down(): void {
-            Schema::dropIfExists('hospitals');
+            Schema::dropIfExists('blood_donation_records');
         }
     };

@@ -19,8 +19,6 @@ return new class extends Migration {
             $table->string('gender');
             $table->integer('age')->nullable(true);
             $table->string('phone_number');
-            // $table->bigInteger('blood_group')->unsigned();
-            // $table->bigInteger('user_id')->unsigned();
             $table->foreignIdFor(\App\Models\Blood_group::class)->constrained();
             $table->foreignIdFor(\App\Models\User::class)->constrained();
             $table->timestamps();

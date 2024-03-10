@@ -24,7 +24,7 @@
             Role::create([
                 'role_name' => $role_name
             ]);
-            return response()->json(['success' => '/roles/']);
+            return response()->json(['success' => '/roles']);
         }
 
         // editRole
@@ -37,10 +37,10 @@
             $id = $request->input('id');
             $update = DB::update("UPDATE roles set role_name = '$role_name' where id = '$id' ");
             if ($update) {
-                return response()->json(['success' => 'roles/']);
+                return response()->json(['success' => '/roles/']);
             }
             else{
-                return response()->json(['error' => 'roles/']);
+                return response()->json(['error' => '/roles/']);
             }
         }
 

@@ -6,6 +6,7 @@
     use Illuminate\Support\Facades\Validator;
     use Illuminate\Http\JSonHttpResponse;
     use App\Models\Blood_group;
+    use App\Models\Blood_donation_record;
 
     class BloodGroupController extends Controller {
         public function index(){
@@ -65,5 +66,40 @@
             else{
                 return response()->json(['error' => '/blood/']);
             }
+        }
+
+        // blood-donation
+        public function bloodDonation(){
+            $donation_records = DB::select("SELECT users.name, blood_groups.bloodGroup, blood_donation_records.id, blood_donation_records.status, blood_donation_records.date_donate FROM users, blood_groups, blood_donation_records, profiles WHERE profiles.user_id = users.id AND profiles.blood_group_id = blood_groups.id AND blood_donation_records.user_id = users.id");
+            $donators = DB::select("SELECT users.id, users.name FROM users where role_id != 2 ");
+            return view ("/blood/blood-donation",
+                [
+                    'donators' => $donators,
+                    'donation_records' => $donation_records
+            ]);
+        }
+
+        // saveRecord
+        public function saveRecord(Request $request){
+            $validator = $request->validate([
+                'donotorName' =>'required',
+                'date_donate' =>'required'
+            ]);
+            $donotorName = $request->input('donotorName');
+            $date_donate = $request->input('date_donate');
+            Blood_donation_record::create([
+                'user_id' => $donotorName,
+                'date_donate' => $date_donate
+            ]);
+            return response()->json(['success' => '/blood/blood-donation']);
+        }
+        // updateSavedRecord
+        public function updateSavedRecord(Request $request){
+            $validator = $request->validate([
+                'id' =>'required',
+            ]);
+            $id = $request->input('id');
+            DB::update(" update blood_donation_records set status = 'used' where id = '$id' ");
+            return response()->json(['success' => '/blood/blood-donation']);
         }
     }

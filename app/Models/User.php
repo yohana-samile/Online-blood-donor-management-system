@@ -54,11 +54,15 @@
         public function Donar (){
             return $this->hasOne(Donar::class);
         }
-        public function Hospital (){
+        public function hospital (){
             return $this->hasOne(Hospital::class);
         }
 
         public function profile(){
             return $this->hasOne(Profile::class);
+        }
+
+        public function blood_donation_record(){
+            return $this->hasMany(Blood_donation_record::class);
         }
     }

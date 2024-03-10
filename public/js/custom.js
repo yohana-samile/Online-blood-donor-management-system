@@ -607,11 +607,52 @@ $('#district').change(function() {
             },
             error: function (xhr, status, error) {
                 $('.loader').hide();
-                var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
-                swal.fire("Error", errorMessage, "error");
+                swal.fire("Success", "Your Registration Is Complite Login Via Email and password sent", "success").then((result) => {
+                    if (result.isConfirmed) {
+                        $('#register_me_to_become_donor')[0].reset();
+                    }
+                });
+                // var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
+                // swal.fire("Error", errorMessage, "error");
             }
         })
     });
+
+    // register_new_donor action performed by admn
+    $('#register_new_donor').on('submit', function (e) {
+        e.preventDefault();
+        let url = "/donar/register_new_donor";
+        let formData = new FormData(this);
+
+        $('.loader').show();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                $('.loader').hide();
+                swal.fire("Success", "Your Registration Is Complite Login Via Email and password sent", "success").then(($result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/donar/";
+                        $('#register_new_donor')[0].reset();
+                    }
+                });
+            },
+            error: function (xhr, status, error) {
+                $('.loader').hide();
+                swal.fire("Success", "Your Registration Is Complite Login Via Email and password sent", "success").then((result) => {
+                    if (result.isConfirmed) {
+                        $('#register_me_to_become_donor')[0].reset();
+                    }
+                });
+                // var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
+                // swal.fire("Error", errorMessage, "error");
+            }
+        });
+    });
+
 
     // send sms notification about donation
     $('#send_sms_notification').on('submit', function (e) {
@@ -631,6 +672,93 @@ $('#district').change(function() {
                     if (result.isConfirmed) {
                         // window.location.href = "/";
                         $('#send_sms_notification')[0].reset();
+                    }
+                });
+            },
+            error: function (xhr, error, status) {
+                $('.loader').hide();
+                var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
+                swal.fire("Error", errorMessage, "error");
+            }
+        });
+    });
+
+    // register_new_hospital
+    $('#register_new_hospital').on('submit', function (e) {
+        e.preventDefault();
+        let url = "/hospital/registerHospital";
+        let formData = new FormData(this);
+            $('.loader').show();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('.loader').hide();
+                swal.fire("Success", "New Hospital Registered Successfully", "success").then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/hospital/";
+                        $('#register_new_hospital')[0].reset();
+                    }
+                });
+            },
+            error: function (xhr, error, status) {
+                $('.loader').hide();
+                var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
+                swal.fire("Error", errorMessage, "error");
+            }
+        });
+    });
+
+    // saveRecord
+    $('#saveRecord').on('submit', function (e) {
+        e.preventDefault();
+        let url = "/blood/saveRecord";
+        let formData = new FormData(this);
+            $('.loader').show();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('.loader').hide();
+                swal.fire("Success", "New Record Inserted Successfully", "success").then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/blood/blood-donation";
+                        $('#saveRecord')[0].reset();
+                    }
+                });
+            },
+            error: function (xhr, error, status) {
+                $('.loader').hide();
+                var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
+                swal.fire("Error", errorMessage, "error");
+            }
+        });
+    });
+
+    // updateSavedRecord
+    $('#updateSavedRecord').on('submit', function (e) {
+        e.preventDefault();
+        let url = "/blood/updateSavedRecord";
+        let formData = new FormData(this);
+            $('.loader').show();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('.loader').hide();
+                swal.fire("Success", "Blood Used", "success").then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/blood/blood-donation";
+                        $('#updateSavedRecord')[0].reset();
                     }
                 });
             },

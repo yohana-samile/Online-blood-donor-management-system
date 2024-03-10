@@ -9,7 +9,7 @@
         protected $fillable = ['blood_group_id', 'region', 'district', 'ward', 'street', 'places', 'gender', 'phone_number'];
 
         public function user(){
-            return $this->belongsTo(User::class);
+            return $this->belongsTo(User::class, 'user_id');
         }
 
         public function blood_group(){

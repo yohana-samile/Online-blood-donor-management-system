@@ -1,16 +1,15 @@
 <?php
+
     namespace App\Models;
     use Illuminate\Database\Eloquent\Factories\HasFactory;
     use Illuminate\Database\Eloquent\Model;
 
-    class Hospital extends Model {
+    class Blood_donation_record extends Model {
         use HasFactory;
         protected $fillable = [
-            'user_id', 'region', 'district', 'ward', 'phone_number', 'address'
+            'user_id', 'date_donate'
         ];
-
-        public function user (){
-            return $this->belongsTo(User::class, 'user_id');
+        public function user(){
+            return $this->belongsTo(user::class);
         }
     }
-
