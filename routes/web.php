@@ -103,11 +103,11 @@
 
     // sms notifications
     Route::controller(SmSNotificationController::class)->group(function (){
-        Route::post('/donar/sendNotification', 'sendNotification')->name('/donar/sendNotification');
         Route::get('fetchdistricts/{regionId}', 'fetchdistricts')->name('fetchdistricts');
         Route::get('fetchwards/{districtId}', 'fetchwards')->name('fetchwards');
         Route::get('fetchstreets/{wardId}', 'fetchstreets')->name('fetchstreets');
         Route::get('fetchplaces/{streetId}', 'fetchplaces')->name('fetchplaces');
+        Route::post('/donar/sendNotification', 'sendNotification')->name('/donar/sendNotification');
     })->middleware('auth');
 
     // residence-locations
