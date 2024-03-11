@@ -4,9 +4,11 @@
     use Illuminate\Http\Request;
     use App\Models\User;
     use App\Models\Profile;
+    use App\Models\Blood_group;
     use Illuminate\Support\Facades\Hash;
     use Illuminate\Support\Facades\Validator;
     use DB;
+    use Auth;
 
     class RegisterUserController extends Controller {
         public function index(){
@@ -23,5 +25,32 @@
             else {
                 return response()->json(["error" => '/donar/']);
             }
+        }
+
+        // profile
+        public function profile(){
+            $user = Auth::user()->id;
+            $my_profile = User::with('profile.Blood_group')->find($user);
+            return view('/donar/profile', compact('my_profile'));
+        }
+
+        // update profile
+        public function updateResidence(Request $request){
+            $validator = $request->validate([
+                'id' =>'required',
+                'region' =>'required',
+                'district' =>'required',
+                'ward' =>'required',
+                'street' =>'required',
+                'places' =>'required',
+            ]);
+            $id = $request->input('id');
+            $region = $request->input('region');
+            $district = $request->input('district');
+            $ward = $request->input('ward');
+            $street = $request->input('street');
+            $places = $request->input('places');
+            DB::update(" update profiles set region = '$region', district = '$district', ward = '$ward', street = '$street', places = '$places' where id = '$id' ");
+            return response()->json(['success' => '/donar/profile']);
         }
     }

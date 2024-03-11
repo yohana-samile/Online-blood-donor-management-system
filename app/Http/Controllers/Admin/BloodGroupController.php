@@ -109,7 +109,16 @@
         // blood request
         public function bloodRequest() {
             $hosp_id = Auth::user()->id;
-            $requestRecord = DB::select("SELECT users.id, blood_requests.date_requested, blood_requests.status, blood_groups.bloodGroup, blood_requests.amountInLtr FROM blood_requests, blood_groups, users WHERE blood_requests.blood_group_id = blood_groups.id AND user_id = '$hosp_id' ");
+            $requestRecord = DB::select("SELECT blood_requests.date_requested,
+                blood_requests.status,
+                blood_requests.amountInLtr,
+                blood_groups.bloodGroup,
+                users.id
+                FROM blood_requests
+                JOIN blood_groups ON blood_requests.blood_group_id = blood_groups.id
+                JOIN users ON blood_requests.user_id = users.id
+                WHERE user_id  = '$hosp_id'
+            ");
             $bGroups = DB::select("SELECT * FROM blood_groups ");
             return view('/blood/blood-request',[
                 'requestRecord' => $requestRecord,
@@ -136,5 +145,48 @@
                 'amountInLtr' => $amountInLtr,
             ]);
             return response()->json(['success' => '/blood/blood-request']);
+        }
+
+        // blood-requested
+        public function bloodRequested(){
+            $requestRecord = DB::select("SELECT blood_requests.date_requested,
+                blood_requests.id,
+                blood_requests.status,
+                blood_requests.amountInLtr,
+                blood_groups.bloodGroup,
+                users.name
+                FROM blood_requests
+                JOIN blood_groups ON blood_requests.blood_group_id = blood_groups.id
+                JOIN users ON blood_requests.user_id = users.id
+            ");
+            return view('/blood/blood-requested',[
+                'requestRecord' => $requestRecord,
+            ]);
+        }
+
+        // acceptRequest
+        public function acceptRequest(Request $request){
+            $validator = $request->validate([
+                'id' =>'required',
+            ]);
+            $id = $request->input('id');
+            DB::update(" update blood_requests set status = 'complited' where id = '$id' ");
+            return response()->json(['success' => '/blood/blood-requested']);
+        }
+
+        // denyRequest
+        public function denyRequest(Request $request){
+            $validator = $request->validate([
+                'id' =>'required',
+            ]);
+            $id = $request->input('id');
+            DB::update(" update blood_requests set status = 'denied' where id = '$id' ");
+            return response()->json(['success' => '/blood/blood-requested']);
+        }
+
+        public function donationRecord(Request $request){
+            $user = Auth::user()->id;
+            $records = DB::select("SELECT * FROM blood_donation_records WHERE user_id = '$user' ");
+            return view('/blood/donation-record', compact('records'));
         }
     }

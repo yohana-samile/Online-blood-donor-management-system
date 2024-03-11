@@ -770,7 +770,7 @@ $('#district').change(function() {
         });
     });
 
-
+    // sendBloodRequest
     $('#sendBloodRequest').on('submit', function (e) {
         e.preventDefault();
         let url = "/blood/sendBloodRequest";
@@ -784,10 +784,98 @@ $('#district').change(function() {
             processData: false,
             success: function (response) {
                 $('.loader').hide();
-                swal.fire("Success", "Reuest Sent Successfully, Wait For Response", "success").then((result) => {
+                swal.fire("Success", "Request Sent Successfully, Wait For Response", "success").then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = "/blood/blood-request";
                         $('#sendBloodRequest')[0].reset();
+                    }
+                });
+            },
+            error: function (xhr, error, status) {
+                $('.loader').hide();
+                var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
+                swal.fire("Error", errorMessage, "error");
+            }
+        });
+    });
+
+
+    //acceptRequest blood request
+    $('#acceptRequest').on('submit', function (e) {
+        e.preventDefault();
+        let url = "/blood/acceptRequest";
+        let formData = new FormData(this);
+            $('.loader').show();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('.loader').hide();
+                swal.fire("Success", "Request Accepted Successfully, Thank You", "success").then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/blood/blood-requested";
+                        $('#acceptRequest')[0].reset();
+                    }
+                });
+            },
+            error: function (xhr, error, status) {
+                $('.loader').hide();
+                var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
+                swal.fire("Error", errorMessage, "error");
+            }
+        });
+    });
+
+    // denyRequest blood-request
+    $('#denyRequest').on('submit', function (e) {
+        e.preventDefault();
+        let url = "/blood/denyRequest";
+        let formData = new FormData(this);
+            $('.loader').show();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('.loader').hide();
+                swal.fire("Success", "Request Denied, Due To Blood Out Of Stock", "success").then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/blood/blood-requested";
+                        $('#denyRequest')[0].reset();
+                    }
+                });
+            },
+            error: function (xhr, error, status) {
+                $('.loader').hide();
+                var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
+                swal.fire("Error", errorMessage, "error");
+            }
+        });
+    });
+
+    // updateResidence
+    $('#updateResidence').on('submit', function (e) {
+        e.preventDefault();
+        let url = "/donar/updateResidence";
+        let formData = new FormData(this);
+            $('.loader').show();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('.loader').hide();
+                swal.fire("Success", "PRofile Updated Sucessfully", "success").then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/donar/profile";
+                        $('#updateResidence')[0].reset();
                     }
                 });
             },

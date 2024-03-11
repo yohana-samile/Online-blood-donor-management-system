@@ -52,6 +52,8 @@
     Route::controller(RegisterUserController::class)->group(function(){
         Route::get('/donar', 'index');
         Route::post('/donar/register_new_donor', 'register_new_donor')->name('/donar/register_new_donor');
+        Route::get('/donar/profile', 'profile');
+        Route::post('/donar/updateResidence', 'updateResidence')->name('/donar/updateResidence');
     })->middleware('auth');
 
     // blood
@@ -63,9 +65,16 @@
         Route::get('/blood/blood-donation', 'bloodDonation');
         Route::post('/blood/saveRecord', 'saveRecord')->name('/blood/saveRecord');
         Route::post('/blood/updateSavedRecord', 'updateSavedRecord')->name('/blood/updateSavedRecord');
+        Route::get('/blood/blood-requested', 'bloodRequested');
+        Route::post('/blood/acceptRequest', 'acceptRequest')->name('/blood/acceptRequest');
+        Route::post('/blood/denyRequest', 'denyRequest')->name('/blood/denyRequest');
+
         // blood request for hospital only
         Route::get('/blood/blood-request', 'bloodRequest');
         Route::post('/blood/sendBloodRequest', 'sendBloodRequest')->name('/blood/sendBloodRequest');
+
+        // for donar
+        Route::get('/blood/donation-record', 'donationRecord');
     })->middleware('auth');
 
     // Role
