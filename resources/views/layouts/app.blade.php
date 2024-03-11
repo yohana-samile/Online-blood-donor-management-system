@@ -23,7 +23,12 @@
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
-
+    <style>
+        .card-with-border {
+            border-left: 5px solid #ff00009c;
+            max-width: 19rem;
+        }
+    </style>
 </head>
 <body>
     @guest
