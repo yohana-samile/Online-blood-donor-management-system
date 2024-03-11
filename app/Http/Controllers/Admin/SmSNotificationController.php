@@ -37,7 +37,6 @@
             }
         }
 
-
         public function sendNotification(Request $request){
             $validateData = $request->validate([
                 'region_to_be_conducted'=>'required',

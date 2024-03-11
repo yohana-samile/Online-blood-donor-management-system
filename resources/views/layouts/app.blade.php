@@ -8,21 +8,26 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ 'Online Blood Donation Management System' }}</title>
-    <link rel="stylesheet" href="{{ url('css/bootstrap.css')}}">
+    {{-- <link rel="stylesheet" href="{{ url('css/bootstrap.css')}}"> --}}
     <link rel="stylesheet" href="{{ url('css/obdms.css')}}">
     <link rel="stylesheet" href="{{ url('css/style.css')}}">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
-   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
     <style>
         .card-with-border {
             border-left: 5px solid #ff00009c;
@@ -158,17 +163,16 @@
             </div>
         </div>
     @endif
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ url("js/custom.js")}}"></script>
-    <script src="{{ url("js/jquery.min.js")}}"></script>
     <script src="{{ url("js/main.js")}}"></script>
-    <script src="{{ url("js/compressedJQuery.js")}}"></script>
-
 
     <script src="{{ url("js/bootstrap.bundle.js")}}"></script>
     <script src="{{ url("js/bootstrap.min.js")}}"></script>
     <script src="{{ url("js/bootstrap.min.js")}}"></script>
     <script src="{{ url("js/bootstrap.js")}}"></script>
+
 </body>
 </html>

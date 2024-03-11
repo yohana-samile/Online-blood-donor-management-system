@@ -1,3 +1,8 @@
+// data table
+$(document).ready(function() {
+    $('#dataTable').DataTable();
+});
+
 // tabs for location
 function openLocation(evt, action) {
     var i, tabcontent, tablinks;
@@ -526,8 +531,8 @@ $(document).ready(function () {
         }
     });
 
-// Enable ward field when district is selected
-$('#district').change(function() {
+    // Enable ward field when district is selected
+    $('#district').change(function() {
         var districtId = $(this).val();
         if (districtId) {
             $('#ward').prop('disabled', false);
