@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">{{('Donator Name:')}} {{ $user->user->name }}</h5>
+                <h5 class="modal-title">{{('Donator Name:')}} {{ $user->name }}</h5>
                 <button type="button" class="btn-danger text-white btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="send_sms_notification">
@@ -60,4 +60,3 @@
         </div>
     </div>
 </div>
-

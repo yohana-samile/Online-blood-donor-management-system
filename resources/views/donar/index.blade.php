@@ -42,10 +42,10 @@
                         @foreach ($profiles as $index => $user)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $user->user->name }}</td>
-                                <td>{{ $user->user->email }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
                                 <td>+255{{ $user->phone_number }}</td>
-                                <td class="text-capitalize text-center">{{ $user->blood_group->bloodGroup }}</td>
+                                <td class="text-capitalize text-center">{{ $user->bloodGroup }}</td>
                                 <td>
                                     <div class="row">
                                         <div class="col-md-4">

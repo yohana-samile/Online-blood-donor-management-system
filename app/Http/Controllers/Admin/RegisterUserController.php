@@ -12,8 +12,9 @@
 
     class RegisterUserController extends Controller {
         public function index(){
-            $usersWithProfile = User::with('profile')->get();
-            $profiles = $usersWithProfile->pluck('profile');
+            // $usersWithProfile = User::with('profile')->get();
+            // $profiles = $usersWithProfile->pluck('profile');
+            $profiles = DB::select("SELECT * FROM users, profiles, blood_groups WHERE profiles.user_id = users.id AND profiles.blood_group_id = blood_groups.id ");
             return view('/donar/index', compact('profiles'));
         }
 

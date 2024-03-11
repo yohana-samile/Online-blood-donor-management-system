@@ -12,8 +12,9 @@
 
     class HospitalController extends Controller {
         public function index(){
-            $usersWithProfile = User::with('Hospital')->get();
-            $hospitalRecord = $usersWithProfile->pluck('Hospital');
+            // $usersWithProfile = User::with('Hospital')->get();
+            // $hospitalRecord = $usersWithProfile->pluck('Hospital');
+            $hospitalRecord = DB::select("SELECT * FROM users, hospitals WHERE hospitals.user_id = users.id ");
             return view('/hospital/index', compact('hospitalRecord'));
         }
 

@@ -42,14 +42,14 @@
                             @foreach ($hospitalRecord as $index => $record)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $record->user->name }}</td>
-                                    <td>{{ $record->user->email }}</td>
+                                    <td>{{ $record->name }}</td>
+                                    <td>{{ $record->email }}</td>
                                     <td>+255{{ $record->phone_number }}</td>
                                     <td class="text-capitalize text-center">{{ $record->address }}</td>
                                     <td>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <a href="javescript:void()" data-target="#viewUser{{ $record->id }}" data-toggle="modal"><i class="fa fa-eye"></i></a>
+                                                <a href="javescript:void()" data-target="#viewHospital{{ $record->id }}" data-toggle="modal"><i class="fa fa-eye"></i></a>
                                             </div>
                                             <div class="col-md-4">
                                                 <a href="javescript:void()" class="text-decoration-none text-warning"><i class="fa fa-edit"></i></a>
@@ -59,7 +59,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- @include('modal.viewEditUserInfo') --}}
+                                        @include('modal.viewHospital')
                                     </td>
                                 </tr>
                             @endforeach
