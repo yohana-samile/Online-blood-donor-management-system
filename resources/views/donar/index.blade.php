@@ -69,7 +69,7 @@
         </div>
     </div>
 
-  <!-- Modal -->
-    @include('modal.registerDonar')
+    <!-- Modal -->
     @include('modal.send_notification')
+    @include('modal.registerDonar')
 @endsection
