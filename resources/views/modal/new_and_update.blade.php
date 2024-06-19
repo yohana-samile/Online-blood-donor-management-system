@@ -6,7 +6,7 @@
                 <button type="button" class="btn-danger text-white btn-close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
             </div>
             <div class="card-body">
-                <form method="POST" action="" id="add_news_and_update">
+                <form id="add_news_and_update">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">

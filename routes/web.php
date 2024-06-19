@@ -51,6 +51,7 @@
     //donar registration
     Route::controller(RegisterUserController::class)->group(function(){
         Route::get('/donar', 'index');
+        Route::get('donar/register_donor', 'register_donor');
         Route::post('/donar/register_new_donor', 'register_new_donor')->name('/donar/register_new_donor');
         Route::get('/donar/profile', 'profile');
         Route::post('/donar/updateResidence', 'updateResidence')->name('/donar/updateResidence');

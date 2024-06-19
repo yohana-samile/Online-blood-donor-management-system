@@ -118,7 +118,7 @@
                             <li>
                                 <a href="{{ url('contact-messages/') }}"><span class="fa fa-envelope-o mr-3 text-white"></span> {{__('Messages')}}</a>
                             </li>
-                            <li>
+                            <li hidden>
                                 <a href="{{ url('residence-locations/') }}"><span class="fa fa-globe mr-3 text-white"></span> {{__('Residence')}}</a>
                             </li>
                         @elseif (Auth::user()->role_id == 2) {{-- hospital --}}

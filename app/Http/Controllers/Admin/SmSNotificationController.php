@@ -37,79 +37,63 @@
             }
         }
 
-        public function sendNotification(Request $request){
+        public function sendNotification(Request $request) {
             $validateData = $request->validate([
-                'region_to_be_conducted'=>'required',
-                'district_to_be_conducted'=>'required',
-                'ward_to_be_conducted'=>'required',
-                'street_to_be_conducted'=>'required',
-                'time_to_be_conducted'=>'required',
-                'sms_notification'=>'required',
+                'region_to_be_conducted' => 'required',
+                'district_to_be_conducted' => 'required',
+                'ward_to_be_conducted' => 'required',
+                'street_to_be_conducted' => 'required',
+                'time_to_be_conducted' => 'required',
+                'sms_notification' => 'required',
             ]);
 
-            $data = $request->all();
-
-            $send_notification = Donor_notification::create([
-                'region_to_be_conducted' => $data['region_to_be_conducted'],
-                'district_to_be_conducted' => $data['district_to_be_conducted'],
-                'ward_to_be_conducted' => $data['ward_to_be_conducted'],
-                'street_to_be_conducted' => $data['street_to_be_conducted'],
-                'time_to_be_conducted' => $data['time_to_be_conducted'],
-                'sms_notification' => $data['sms_notification'],
-            ]);
+            $send_notification = Donor_notification::create($validateData);
 
             if ($send_notification) {
-
-                // get all donaros phone number into array
+                // Get all donor phone numbers into an array
                 $membersPhoneNumber = DB::table('profiles')->pluck('phone_number')->toArray();
 
-                //…. Api url
-                $Url ='https://apisms.beem.africa/v1/send';
-
+                // API URL
+                $url = 'https://apisms.beem.africa/v1/send';
                 $api_key= '643449c5b429a174';
                 $secret_key = 'NWUxODBhMjkzYjg3NDc0YWIwNzFhZWE4ZGI1NzFhNzA5ZjIwM2E4NzJjYTcxM2QzMzJjOGE5ZDQyODhjMzg3ZA==';
 
-                // Function to generate a random ID
-                function randomId($randomInt) {
-                    return $randomInt;
-                }
 
                 // Generate a random ID
-                $randomInt = random_int(12001, 1000000);
-                $id = randomId($randomInt);
+                $id = random_int(12001, 1000000);
 
-                // message to be sent
-                $message = "Region:" . $data['region_to_be_conducted'] . "\n" .
-                    "District:" . $data['district_to_be_conducted'] . "\n" .
-                    "Ward:" . $data['ward_to_be_conducted'] . "\n" .
-                    "Date Time:" . $data['time_to_be_conducted'] . "\n" .
-                    "Info:" . $data['sms_notification'];
+                // Message to be sent
+                $message = "Region: {$validateData['region_to_be_conducted']}\n" .
+                           "District: {$validateData['district_to_be_conducted']}\n" .
+                           "Ward: {$validateData['ward_to_be_conducted']}\n" .
+                           "Date Time: {$validateData['time_to_be_conducted']}\n" .
+                           "Info: {$validateData['sms_notification']}";
 
                 // Request payload
-                $postData = array(
+                $postData = [
                     'source_addr' => 'INFO',
                     'encoding' => 0,
                     'schedule_time' => '',
                     'message' => $message,
-                    'recipients' => []
-                );
+                    'recipients' => array()
+                ];
 
-                foreach ($membersPhoneNumber as $phone_number){
+                foreach ($membersPhoneNumber as $phone_number) {
                     // Destination phone number
                     $dest_addr = '255' . $phone_number;
                     $postData['recipients'][] = array('recipient_id' => $id, 'dest_addr' => $dest_addr);
                 }
 
                 // Setup cURL
-                $ch = curl_init($Url);
+                $ch = curl_init($url);
                 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
                 curl_setopt($ch, CURLOPT_POST, TRUE);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                curl_setopt($ch, CURLOPT_HTTPHEADER, [
                     'Authorization: Basic ' . base64_encode($api_key . ':' . $secret_key),
                     'Content-Type: application/json'
-                ));
+                ]);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
 
                 // Send the request
@@ -117,18 +101,14 @@
 
                 // Check for errors
                 if ($response === FALSE) {
-                    // echo $response;
-                    return response()->json(['error' => '/donar/']);
-                    die(curl_error($ch));
-                }
-                else{
-                    // var_dump($response);
+                    return response()->json(['error' => curl_error($ch)]);
+                } else {
                     // Close cURL
                     curl_close($ch);
-                    return response()->json(['success' => '/donar/']);
+                    return response()->json(['success' => 'Notification sent successfully']);
                 }
-
             }
         }
+
     }
 

@@ -6,7 +6,7 @@
                 <button type="button" class="btn-danger text-white btn-close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
             </div>
             <div class="card-body">
-                <form method="POST" action="" id="register_role">
+                <form id="register_role">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">

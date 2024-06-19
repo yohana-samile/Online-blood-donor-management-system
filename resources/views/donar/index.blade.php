@@ -10,7 +10,9 @@
                 </div>
                 <div class="col-md-6">
                     <div class="btn btn-danger text-white float-right">
-                        <a href="javascript:void()" class="text-decoration-none text-white" data-toggle="modal" data-target="#registerDonar" aria-expanded="false" aria-label="Toggle navigation"> New Donar + </a>
+                        <a href="{{ url('donar/register_donor')}}" class="text-decoration-none text-white"> New Donar + </a>
+                        {{-- if u prefer to use modal uncomment below --}}
+                        {{-- <a href="javascript:void()" class="text-decoration-none text-white" data-toggle="modal" data-target="#registerDonar" aria-expanded="false" aria-label="Toggle navigation"> New Donar + </a> --}}
                     </div>
                 </div>
             </div>
@@ -69,7 +71,9 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    @include('modal.send_notification')
-    @include('modal.registerDonar')
-@endsection
+  <!-- Modal -->
+  @include('modal.send_notification')
+  @include('modal.registerDonar')
+  @endsection
+
+

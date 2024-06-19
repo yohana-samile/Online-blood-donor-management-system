@@ -18,6 +18,10 @@
             return view('/donar/index', compact('profiles'));
         }
 
+        public function register_donor(){
+            return view('donar/register_donor');
+        }
+
         // register_new_donor
         protected function register_new_donor(Request $request) {
             require_once(app_path().'/Http/userRegistrationFnct.php');

@@ -649,7 +649,7 @@ $(document).ready(function () {
                 $('.loader').hide();
                 swal.fire("Success", "Your Registration Is Complite Login Via Email and password sent", "success").then((result) => {
                     if (result.isConfirmed) {
-                        $('#register_me_to_become_donor')[0].reset();
+                        $('#register_new_donor')[0].reset();
                     }
                 });
                 // var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
@@ -660,7 +660,7 @@ $(document).ready(function () {
 
 
     // send sms notification about donation
-    $('#send_sms_notification').on('submit', function (e) {
+    $('#why_send_sms_notification').on('submit', function (e) {
         e.preventDefault();
         let url = "/donar/sendNotification";
         let formData = new FormData(this);
@@ -676,14 +676,16 @@ $(document).ready(function () {
                 swal.fire("Success", "Notification Sent To All Members Successfully", "success").then((result) => {
                     if (result.isConfirmed) {
                         // window.location.href = "/";
-                        $('#send_sms_notification')[0].reset();
+                        $('#why_send_sms_notification')[0].reset();
                     }
                 });
             },
             error: function (xhr, error, status) {
                 $('.loader').hide();
-                var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
-                swal.fire("Error", errorMessage, "error");
+                // var errorMessage = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Something went wrong, please try again";
+                // swal.fire("Error", errorMessage, "error");
+                // console.log(errorMessage);
+                console.log(error);
             }
         });
     });

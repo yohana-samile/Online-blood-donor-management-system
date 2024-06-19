@@ -9,7 +9,8 @@
                 <button type="button" class="btn-danger text-white btn-close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
             </div>
             <div class="card-body">
-                <form id="send_sms_notification">
+                <!-- <form action="/donar/sendNotification" method="post"> -->
+                <form id="why_send_sms_notification">
                     @csrf
                     <div class="loader" style="display: none;"></div>
                     <div class="modal-body">

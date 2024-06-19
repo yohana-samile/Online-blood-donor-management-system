@@ -65,6 +65,6 @@
         </div>
     </div>
 
-  <!-- Modal -->
+    <!-- Modal -->
     @include('modal.registerRole')
 @endsection

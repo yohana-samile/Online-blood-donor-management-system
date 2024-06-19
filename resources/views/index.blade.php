@@ -252,7 +252,7 @@
 
     {{-- news and update --}}
     <div class="container bg-light" id="new_and_update">
-        <h4 class="text-center">news and update</h4>
+        <h4 class="text-center">{{__('news and update')}}</h4>
         @php
             $get_news = DB::select("SELECT * FROM `new_and_updates`");
         @endphp
@@ -274,7 +274,7 @@
                 @endforeach
             </div>
         @else
-            <p class="alert alert-danger my-4">No Records</p>
+            <p class="alert alert-danger my-4">{{__('No Records')}}</p>
         @endif
     </div>
 
@@ -282,30 +282,30 @@
     <div class="container my-4 bg-white" id="contact_us"><br>
         <div class="row my-3">
             <div class="col-md-6">
-                <h4>Contact Details </h4>
-                    <p>Address: p.obox 1 Mzumbe</p>
-                    <p>Phone Number: +255 620 350 083</p>
-                    <p>Email: yohanasamile@gmail.com</p>
+                <h4>{{__('Contact Details')}} </h4>
+                    <p>{{__('Address: p.obox 1 Mzumbe')}}</p>
+                    <p>{{__('Phone Number: +255 620 350 083')}}</p>
+                    <p>{{__('Email: yohanasamile@gmail.com')}}</p>
                 <h4>{{('Location')}}</h4>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126935.91330601924!2d39.14826951347784!3d-6.164587973561293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185cd0ba23b63ecb%3A0x52c848ab6efc138e!2sZanzibar!5e0!3m2!1sen!2stz!4v1706515771441!5m2!1sen!2stz" width="540" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="col-md-6">
-                <h4 class="text-center">Fill This Form To Contact With Us</h4>
+                <h4 class="text-center">{{__('Fill This Form To Contact With Us')}}</h4>
                 <form id="send_my_message">
                     @csrf
                     <div class="mb-3">
-                        <label for="full_name" class="form-label">Full Name</label>
+                        <label for="full_name" class="form-label">{{__('Full Name')}}</label>
                         <input type="text" class="form-control" id="full_name" name="full_name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="phone_number" class="form-label">Phone Number</label>
+                        <label for="phone_number" class="form-label">{{__('Phone Number')}}</label>
                         <input type="tell" name="phone_number" id="phone_number" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="message" class="form-label">Enter Your Message</label>
+                        <label for="message" class="form-label">{{__('Enter Your Message')}}</label>
                         <textarea name="message" id="message" class="form-control" cols="30" rows="10" required></textarea>
                     </div>
-                    <button type="submit" class="send_my_message btn btn-danger">Send Message</button>
+                    <button type="submit" class="send_my_message btn btn-danger">{{__('Send Message')}}</button>
                 </form>
             </div>
         </div>

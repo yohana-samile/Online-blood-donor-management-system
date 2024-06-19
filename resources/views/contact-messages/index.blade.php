@@ -61,7 +61,7 @@
             </table>
         </div>
         @else
-            <div class="alert alert-danger">Do Records</div>
+            <div class="alert alert-danger">No Records</div>
         @endif
     </div>
 @endsection
