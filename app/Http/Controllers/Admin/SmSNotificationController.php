@@ -55,8 +55,8 @@
 
                 // API URL
                 $url = 'https://apisms.beem.africa/v1/send';
-                $api_key= '643449c5b429a174';
-                $secret_key = 'NWUxODBhMjkzYjg3NDc0YWIwNzFhZWE4ZGI1NzFhNzA5ZjIwM2E4NzJjYTcxM2QzMzJjOGE5ZDQyODhjMzg3ZA==';
+                $api_key= ' ';
+                $secret_key = ' ==';
 
 
                 // Generate a random ID
